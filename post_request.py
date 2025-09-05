@@ -2,8 +2,7 @@ from flask import Flask, render_template, request, jsonify
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
-template_dir = os.path.abspath(r"C:\Users\DELL")
-app = Flask(__name__,template_folder=template_dir)
+app = Flask(__name__,template_folder=r"D:\Umang_Coding\AI_chatbot\template")
 
 #  MySQL connection
 try:
