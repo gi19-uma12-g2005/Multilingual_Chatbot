@@ -13,9 +13,9 @@ try:
         database="bot"
     )
     cursor = con.cursor()
-    print("✅ Connection succeed")
+    print("Connection succeed")
 except mysql.connector.Error as e:
-    print("❌ Failed:", e)
+    print(" Failed:", e)
 
 # 🔹 Serve HTML page
 @app.route("/")
@@ -29,7 +29,7 @@ def login():
     password = request.form.get("password")
 
     if not user or not password:
-        return jsonify({"message": "❌ User ID and Password required!"})
+        return jsonify({"message": " User ID and Password required!"})
     
     hashed_password = generate_password_hash(password)
 
@@ -37,9 +37,9 @@ def login():
     try:
         cursor.execute("INSERT INTO USER (USER_ID, PASSWORD) VALUES (%s, %s)", (user,hashed_password))
         con.commit()
-        return jsonify({"message": f"✅ User {user} added successfully!"})
+        return jsonify({"message": f" User {user} added successfully!"})
     except mysql.connector.Error as e:
-        return jsonify({"message": f"❌ Database Error: {str(e)}"})
+        return jsonify({"message": f" Database Error: {str(e)}"})
 
 
 
