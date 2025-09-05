@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibrant Login Page</title>
+    <title>Vibrant Registration Page</title>
 
     <!-- ✅ Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -40,51 +40,75 @@
 
     <!-- Main Content Container -->
     <main class="relative flex items-center justify-center min-h-screen w-full p-4">
-        <!-- Login Form Card -->
+        <!-- Registration Form Card -->
         <div class="form-container w-full max-w-md rounded-2xl shadow-lg p-8 space-y-6 text-white">
             <!-- Header -->
             <div class="text-center">
-                <h1 class="text-3xl font-bold tracking-tight">Welcome Back!</h1>
-                <p class="text-gray-200 mt-2">Sign in to continue your journey.</p>
+                <h1 class="text-3xl font-bold tracking-tight">Create Account</h1>
+                <p class="text-gray-200 mt-2">Sign up to join the community.</p>
             </div>
 
-            <!-- Form -->
-            <form action="/login" method="POST" class="space-y-6">
-                <!-- User ID Input -->
+            <!-- Registration Form -->
+            <form action="/register" method="POST" class="space-y-6">
+                <!-- Full Name -->
                 <div>
-                    <label for="user_id" class="block text-sm font-medium text-gray-200">User ID</label>
+                    <label for="full_name" class="block text-sm font-medium text-gray-200">Full Name</label>
                     <div class="mt-1">
-                        <input id="user_id" name="user_id" type="text" autocomplete="username" required 
+                        <input id="full_name" name="full_name" type="text" required
                                class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
                     </div>
                 </div>
 
-                <!-- Password Input -->
+                <!-- Email -->
                 <div>
-                    <div class="flex items-center justify-between">
-                        <label for="password" class="block text-sm font-medium text-gray-200">Password</label>
-                        <a href="#" class="text-sm font-medium text-pink-300 hover:text-pink-200 transition">Forgot password?</a>
-                    </div>
+                    <label for="email" class="block text-sm font-medium text-gray-200">Email</label>
                     <div class="mt-1">
-                        <input id="password" name="password" type="password" autocomplete="current-password" required
+                        <input id="email" name="email" type="email" required
+                               class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
+                    </div>
+                </div>
+
+                <!-- User ID -->
+                <div>
+                    <label for="user_id" class="block text-sm font-medium text-gray-200">User ID</label>
+                    <div class="mt-1">
+                        <input id="user_id" name="user_id" type="text" required
+                               class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-200">Password</label>
+                    <div class="mt-1">
+                        <input id="password" name="password" type="password" required
+                               class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div>
+                    <label for="confirm_password" class="block text-sm font-medium text-gray-200">Confirm Password</label>
+                    <div class="mt-1">
+                        <input id="confirm_password" name="confirm_password" type="password" required
                                class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
                     </div>
                 </div>
 
                 <!-- Submit Button -->
                 <div>
-                    <button type="submit" 
+                    <button type="submit"
                             class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transform hover:scale-105 transition-transform duration-300">
-                        LOGIN
+                        REGISTER
                     </button>
                 </div>
             </form>
 
             <!-- Footer Link -->
             <p class="text-center text-sm text-gray-300">
-                Not a member?
-                <a href="register.html" class="font-medium text-violet-300 hover:text-violet-200 transition">
-                    Sign up now
+                Already have an account?
+                <a href="login.html" class="font-medium text-violet-300 hover:text-violet-200 transition">
+                    Sign in
                 </a>
             </p>
         </div>
