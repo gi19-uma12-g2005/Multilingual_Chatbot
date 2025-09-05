@@ -1,26 +1,49 @@
-from dotenv import load_dotenv
-import os
+from flask import Flask, render_template, request, jsonify
 import mysql.connector
+from werkzeug.security import generate_password_hash, check_password_hash
+import os
+template_dir = os.path.abspath(r"C:\Users\DELL")
+app = Flask(__name__,template_folder=template_dir)
 
-load_dotenv()
-print("USER:", os.getenv("DB_USER"))
-print("PASS:", os.getenv("DB_PASS"))
-print("DB:", os.getenv("DB_DATABASE"))
-
-
+#  MySQL connection
 try:
-    con=mysql.connector.connect(
-
-    host="127.0.0.1",
-    user=os.getenv("DB_USER"),
-    password=os.getenv("DB_PASS"),
-    database=os.getenv("DB_DATABASE")
-
-)
-    print("Connection succeed")
-
-
+    con = mysql.connector.connect(
+        host="127.0.0.1",
+        user="root",
+        password="12345",
+        database="bot"
+    )
+    cursor = con.cursor()
+    print("✅ Connection succeed")
 except mysql.connector.Error as e:
     print("❌ Failed:", e)
 
+# 🔹 Serve HTML page
+@app.route("/")
+def home():
+    return render_template("ug1.html")  # Browser me colorful page dikhega
+
+# 🔹 Login form submit
+@app.route("/login", methods=["POST"])
+def login():
+    user = request.form.get("user_id")
+    password = request.form.get("password")
+
+    if not user or not password:
+        return jsonify({"message": "❌ User ID and Password required!"})
     
+    hashed_password = generate_password_hash(password)
+
+
+    try:
+        cursor.execute("INSERT INTO USER (USER_ID, PASSWORD) VALUES (%s, %s)", (user,hashed_password))
+        con.commit()
+        return jsonify({"message": f"✅ User {user} added successfully!"})
+    except mysql.connector.Error as e:
+        return jsonify({"message": f"❌ Database Error: {str(e)}"})
+
+
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
