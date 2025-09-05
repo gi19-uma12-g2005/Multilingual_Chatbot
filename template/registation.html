@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibrant Registration Page</title>
+    <title>Institutional Chatbot - Registration</title>
 
-    <!-- ✅ Tailwind CSS CDN -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Google Fonts: Inter -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,98 +18,62 @@
             font-family: 'Inter', sans-serif;
         }
         .form-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15); /* semi-transparent */
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px); /* Safari support */
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
         .form-input {
             background: rgba(255, 255, 255, 0.08);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
         .form-input:focus {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.5);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
-<body class="bg-gray-900">
+<body class="relative">
 
     <!-- Background Gradient -->
-    <div class="absolute inset-0 w-full h-full bg-gradient-to-tr from-violet-600 via-pink-500 to-orange-400"></div>
+    <div class="absolute inset-0 w-full h-full bg-gradient-to-tr from-blue-700 via-indigo-600 to-teal-500"></div>
 
-    <!-- Main Content Container -->
+    <!-- Main Content -->
     <main class="relative flex items-center justify-center min-h-screen w-full p-4">
-        <!-- Registration Form Card -->
-        <div class="form-container w-full max-w-md rounded-2xl shadow-lg p-8 space-y-6 text-white">
+        <!-- Registration Form -->
+        <div class="form-container w-full max-w-md rounded-2xl p-8 space-y-6 shadow-lg">
+            
             <!-- Header -->
             <div class="text-center">
-                <h1 class="text-3xl font-bold tracking-tight">Create Account</h1>
-                <p class="text-gray-200 mt-2">Sign up to join the community.</p>
+                <h1 class="text-3xl font-bold text-white">Multilignual Chatbot Portal</h1>
+                <p class="text-gray-200 mt-2 text-sm">
+                    Register an account to interact with the chatbot and access institutional information.
+                </p>
             </div>
 
             <!-- Registration Form -->
-            <form action="/register" method="POST" class="space-y-6">
-                <!-- Full Name -->
-                <div>
-                    <label for="full_name" class="block text-sm font-medium text-gray-200">Full Name</label>
-                    <div class="mt-1">
-                        <input id="full_name" name="full_name" type="text" required
-                               class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
-                    </div>
-                </div>
+            <form action="/register" method="POST" class="space-y-5">
+                <input type="text" name="full_name" placeholder="Full Name" required class="form-input w-full px-4 py-3 rounded-lg">
+                <input type="email" name="email" placeholder="Email" required class="form-input w-full px-4 py-3 rounded-lg">
+                <input type="text" name="user_id" placeholder="User ID" required class="form-input w-full px-4 py-3 rounded-lg">
+                <input type="password" name="password" placeholder="Password" required class="form-input w-full px-4 py-3 rounded-lg">
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required class="form-input w-full px-4 py-3 rounded-lg">
 
-                <!-- Email -->
-                <div>
-                    <label for="email" class="block text-sm font-medium text-gray-200">Email</label>
-                    <div class="mt-1">
-                        <input id="email" name="email" type="email" required
-                               class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
-                    </div>
-                </div>
-
-                <!-- User ID -->
-                <div>
-                    <label for="user_id" class="block text-sm font-medium text-gray-200">User ID</label>
-                    <div class="mt-1">
-                        <input id="user_id" name="user_id" type="text" required
-                               class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
-                    </div>
-                </div>
-
-                <!-- Password -->
-                <div>
-                    <label for="password" class="block text-sm font-medium text-gray-200">Password</label>
-                    <div class="mt-1">
-                        <input id="password" name="password" type="password" required
-                               class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
-                    </div>
-                </div>
-
-                <!-- Confirm Password -->
-                <div>
-                    <label for="confirm_password" class="block text-sm font-medium text-gray-200">Confirm Password</label>
-                    <div class="mt-1">
-                        <input id="confirm_password" name="confirm_password" type="password" required
-                               class="form-input w-full px-4 py-3 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-900 focus:ring-white transition duration-300">
-                    </div>
-                </div>
-
-                <!-- Submit Button -->
-                <div>
-                    <button type="submit"
-                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-bold text-white bg-gradient-to-r from-pink-500 to-orange-500 hover:from-pink-600 hover:to-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500 transform hover:scale-105 transition-transform duration-300">
-                        REGISTER
-                    </button>
-                </div>
+                <button type="submit" class="w-full py-3 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition duration-300">
+                    REGISTER
+                </button>
             </form>
 
             <!-- Footer Link -->
-            <p class="text-center text-sm text-gray-300">
-                Already have an account?
-                <a href="login.html" class="font-medium text-violet-300 hover:text-violet-200 transition">
-                    Sign in
-                </a>
+            <p class="text-center text-gray-200 text-sm">
+                Already registered? 
+                <a href="/" class="text-blue-300 hover:text-white font-medium transition">Sign in</a>
             </p>
         </div>
     </main>
