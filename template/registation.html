@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Institutional Chatbot - Registration</title>
+    <title>Reset Password - Admin Portal</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -18,65 +18,33 @@
             font-family: 'Inter', sans-serif;
         }
         .form-container {
-            background: rgba(255, 255, 255, 0.15); /* semi-transparent */
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.25);
+            background: #f8fafc; /* same light professional background */
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
-        .form-input {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
+        .form-link {
+            color: #3b82f6;
         }
-        .form-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-        .form-input:focus {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.5);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.3);
+        .form-link:hover {
+            color: #1e40af;
         }
     </style>
 </head>
-<body class="relative">
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
 
-    <!-- Background Gradient -->
-    <div class="absolute inset-0 w-full h-full bg-gradient-to-tr from-blue-700 via-indigo-600 to-teal-500"></div>
+    <div class="form-container w-full max-w-md text-center">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Password Reset</h1>
+        <p class="text-gray-600 mb-6">
+            If you forgot your password, please contact the technical team at 
+            <a href="#"><strong>support@example.com</strong>.
+            </a>
+        </p>
 
-    <!-- Main Content -->
-    <main class="relative flex items-center justify-center min-h-screen w-full p-4">
-        <!-- Registration Form -->
-        <div class="form-container w-full max-w-md rounded-2xl p-8 space-y-6 shadow-lg">
-            
-            <!-- Header -->
-            <div class="text-center">
-                <h1 class="text-3xl font-bold text-white">Multilignual Chatbot Portal</h1>
-                <p class="text-gray-200 mt-2 text-sm">
-                    Register an account to interact with the chatbot and access institutional information.
-                </p>
-            </div>
-
-            <!-- Registration Form -->
-            <form action="/register" method="POST" class="space-y-5">
-                <input type="text" name="full_name" placeholder="Full Name" required class="form-input w-full px-4 py-3 rounded-lg">
-                <input type="email" name="email" placeholder="Email" required class="form-input w-full px-4 py-3 rounded-lg">
-                <input type="text" name="user_id" placeholder="User ID" required class="form-input w-full px-4 py-3 rounded-lg">
-                <input type="password" name="password" placeholder="Password" required class="form-input w-full px-4 py-3 rounded-lg">
-                <input type="password" name="confirm_password" placeholder="Confirm Password" required class="form-input w-full px-4 py-3 rounded-lg">
-
-                <button type="submit" class="w-full py-3 px-4 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition duration-300">
-                    REGISTER
-                </button>
-            </form>
-
-            <!-- Footer Link -->
-            <p class="text-center text-gray-200 text-sm">
-                Already registered? 
-                <a href="/" class="text-blue-300 hover:text-white font-medium transition">Sign in</a>
-            </p>
-        </div>
-    </main>
+        <a href="/" class="inline-block mt-4 py-3 px-6 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition duration-300">
+            Back to Login
+        </a>
+    </div>
 
 </body>
 </html>

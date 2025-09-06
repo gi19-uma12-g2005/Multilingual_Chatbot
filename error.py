@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__, template_folder=r"D:\Umang_Coding\AI_chatbot\template")
 
 #  MySQL connection
-try:
+try: 
     con = mysql.connector.connect(
         host="127.0.0.1",
         user="root",
