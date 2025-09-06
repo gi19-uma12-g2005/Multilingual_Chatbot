@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 import mysql.connector
 from werkzeug.security import generate_password_hash, check_password_hash
-import os
-
 app = Flask(__name__, template_folder=r"D:\Umang_Coding\AI_chatbot\template")
 
 #  MySQL connection
