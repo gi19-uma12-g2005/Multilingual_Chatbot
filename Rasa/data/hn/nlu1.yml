@@ -1,0 +1,109 @@
+version: "3.1"
+nlu:
+- intent: happy
+  examples: |
+    - मैं बहुत खुश हूँ
+    - ये जानकर अच्छा लगा!
+    - मुझे खुशी हुई
+    - आपका जवाब अच्छा लगा
+
+- intent: greet
+  examples: |
+    - नमस्ते
+    - हेलो
+    - सुप्रभात
+
+- intent: fee_deadline
+  examples: |
+    - फीस जमा करने की आखिरी तारीख क्या है?
+    - भुगतान की अंतिम तिथि कब है?
+
+- intent: scholarship_info
+  examples: |
+    - छात्रवृत्ति की जानकारी दो
+    - छात्रवृत्ति के लिए क्या पात्रता है?
+
+- intent: office_hours
+  examples: |
+    - कार्यालय के कार्य दिवस कौन से हैं?
+    - कार्यालय कब खुलता है?
+
+- intent: admission_status
+  examples: |
+    - मेरा प्रवेश स्थिति क्या है?
+    - क्या मेरा आवेदन स्वीकृत हुआ है?
+
+- intent: course_info
+  examples: |
+    - कौन से कोर्स उपलब्ध हैं?
+    - कोर्स की जानकारी दें
+
+- intent: result_date
+  examples: |
+    - परीक्षा का परिणाम कब आएगा?
+    - मैं अपने अंक कब देख सकता हूँ?
+
+- intent: password_reset
+  examples: |
+    - पासवर्ड कैसे रीसेट करूं?
+    - मैं लॉगिन विवरण भूल गया हूँ
+
+- intent: hostel_info
+  examples: |
+    - क्या हॉस्टल उपलब्ध है?
+    - हॉस्टल की फीस कितनी है?
+
+- intent: payment_methods
+  examples: |
+    - फीस कैसे जमा करूं?
+    - आप कौन-कौन से भुगतान विकल्प स्वीकार करते हैं?
+
+- intent: grievance_redressal
+  examples: |
+    - शिकायत कैसे दर्ज करूं?
+    - मैं कोई समस्या रिपोर्ट करना चाहता हूँ
+
+- intent: faculty_info
+  examples: |
+    - शिक्षक कौन हैं?
+    - फैकल्टी की सूची दें
+
+- intent: syllabus_details
+  examples: |
+    - सिलेबस कहाँ से मिलेगा?
+    - सिलेबस पीडीएफ भेजें
+
+- intent: contact_info
+  examples: |
+    - संपर्क नंबर क्या है?
+    - हेल्पडेस्क से कैसे संपर्क करें?
+
+- intent: holiday_list
+  examples: |
+    - छुट्टियाँ कब हैं?
+    - अगली छुट्टी कब होगी?
+
+- intent: library_info
+  examples: |
+    - पुस्तकालय के समय क्या हैं?
+    - पुस्तकालय की सदस्यता कैसे लें?
+
+- intent: transportation
+  examples: |
+    - परिवहन सेवा उपलब्ध है?
+    - बस का टाइमिंग क्या है?
+
+- intent: event_info
+  examples: |
+    - आगामी कार्यक्रम क्या हैं?
+    - अगले इवेंट के बारे में बताएं
+
+- intent: certificate_request
+  examples: |
+    - प्रमाणपत्र के लिए आवेदन कैसे करें?
+    - मेरा प्रमाणपत्र कब मिलेगा?
+
+- intent: location
+  examples: |
+    - कॉलेज का पता क्या है?
+    - कैंपस तक कैसे पहुंचें?

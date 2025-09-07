@@ -1,0 +1,65 @@
+version: "3.1"
+
+intents:
+  - greet
+  - fee_deadline
+  - scholarship_info
+  - office_hours
+  - admission_status
+  - course_info
+  - result_date
+  - password_reset
+  - hostel_info
+  - payment_methods
+  - grievance_redressal
+  - faculty_info
+  - syllabus_details
+  - contact_info
+  - holiday_list
+  - library_info
+  - transportation
+  - event_info
+  - certificate_request
+  - location
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I assist you today?"
+  utter_fee_deadline:
+    - text: "The last date for fee submission is September 30, 2025. Please make sure to pay before this date."
+  utter_scholarship_info:
+    - text: "Scholarships are available for eligible students. You can apply until October 15, 2025. Check the scholarship page for details."
+  utter_office_hours:
+    - text: "Our office working days are Monday to Friday, from 9 AM to 5 PM."
+  utter_admission_status:
+    - text: "You can check your admission status by logging into your student portal or I can help you if you provide your application ID."
+  utter_course_info:
+    - text: "We offer courses in Computer Science, Business Administration, and Engineering. Which course are you interested in?"
+  utter_result_date:
+    - text: "The exam results will be published on October 10, 2025. You can check them on the results portal."
+  utter_password_reset:
+    - text: "To reset your password, please visit the password recovery page or I can send you a reset link."
+  utter_hostel_info:
+    - text: "Hostel accommodation is available for students. The fees start at INR 10,000 per month."
+  utter_payment_methods:
+    - text: "You can pay your fees via online bank transfer, credit card, or UPI payment."
+  utter_grievance_redressal:
+    - text: "To file a complaint, please fill out the grievance form available on our website or tell me your issue and I will assist."
+  utter_faculty_info:
+    - text: "Our faculty includes experienced professors in various departments. You can find the detailed list on the faculty page."
+  utter_syllabus_details:
+    - text: "You can download the syllabus PDF from our official website under the academic section."
+  utter_contact_info:
+    - text: "You can contact us at 123-456-7890 or email support@institution.edu."
+  utter_holiday_list:
+    - text: "The upcoming holidays are on October 2 (Gandhi Jayanti) and November 14 (Children's Day)."
+  utter_library_info:
+    - text: "The library is open from 8 AM to 8 PM on all working days."
+  utter_transportation:
+    - text: "We provide bus services covering major routes in the city. Check the transport schedule online."
+  utter_event_info:
+    - text: "The next college event is the Annual Cultural Fest starting on December 1, 2025."
+  utter_certificate_request:
+    - text: "You can request your certificates by filling the form on the student portal under the certificates section."
+  utter_location:
+    - text: "Our campus is located at 123 Education Street, Cityname. You can use Google Maps for directions."

@@ -1,0 +1,103 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - Hello
+    - Hi
+    - Good morning
+
+- intent: fee_deadline
+  examples: |
+    - What is the fee deadline?
+    - When is the last date to pay fees?
+    - Fee deadline
+
+- intent: scholarship_info
+  examples: |
+    - Tell me about scholarships
+    - What are the scholarship requirements?
+
+- intent: office_hours
+  examples: |
+    - What are the working days?
+    - When is the office open?
+
+- intent: admission_status
+  examples: |
+    - What is my admission status?
+    - Has my application been accepted?
+
+- intent: course_info
+  examples: |
+    - What courses are offered?
+    - Tell me about the courses
+
+- intent: result_date
+  examples: |
+    - When will the exam result be announced?
+    - When can I check my marks?
+
+- intent: password_reset
+  examples: |
+    - How do I reset my password?
+    - I forgot my login details
+
+- intent: hostel_info
+  examples: |
+    - Is hostel available?
+    - What is the hostel fee?
+
+- intent: payment_methods
+  examples: |
+    - How can I pay fees?
+    - What payment methods do you accept?
+
+- intent: grievance_redressal
+  examples: |
+    - How to file a complaint?
+    - I want to report an issue
+
+- intent: faculty_info
+  examples: |
+    - Who are the faculty members?
+    - Give me the faculty list
+
+- intent: syllabus_details
+  examples: |
+    - Where can I get the syllabus?
+    - Send me the syllabus PDF
+
+- intent: contact_info
+  examples: |
+    - What is the contact number?
+    - How can I reach the helpdesk?
+
+- intent: holiday_list
+  examples: |
+    - What are the holidays?
+    - When is the next holiday?
+
+- intent: library_info
+  examples: |
+    - What are the library timing?
+    - How to get library membership?
+
+- intent: transportation
+  examples: |
+    - Is transport available?
+    - What are the bus timings?
+
+- intent: event_info
+  examples: |
+    - What events are coming up?
+    - Tell me about the next event
+
+- intent: certificate_request
+  examples: |
+    - How do I apply for certificate?
+    - When will I get my certificate?
+
+- intent: location
+  examples: |
+    - What is the college address?
+    - How to reach the campus?

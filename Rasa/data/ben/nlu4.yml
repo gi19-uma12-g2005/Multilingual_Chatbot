@@ -1,0 +1,102 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - হ্যালো
+    - নমস্কার
+    - শুভ সকাল
+
+- intent: fee_deadline
+  examples: |
+    - ফি জমার শেষ তারিখ কেটা?
+    - ফি কখন দেওয়া শেষ হবে?
+
+- intent: scholarship_info
+  examples: |
+    - বৃত্তির যোগ্যতা কী?
+    - বৃত্তির আবেদন কবে শুরু হবে?
+
+- intent: office_hours
+  examples: |
+    - অফিসের কর্মদিবস কী কী?
+    - অফিস কখন খোলা থাকে?
+
+- intent: admission_status
+  examples: |
+    - আমার ভর্তি অবস্থান কী?
+    - আমার আবেদন গৃহীত হয়েছে?
+
+- intent: course_info
+  examples: |
+    - কোন কোন কোর্স পাওয়া যায়?
+    - কোর্স সম্পর্কে জানান
+
+- intent: result_date
+  examples: |
+    - পরীক্ষার ফলাফল কখন প্রকাশ হবে?
+    - আমি কত পাব?
+
+- intent: password_reset
+  examples: |
+    - কীভাবে পাসওয়ার্ড রিসেট করব?
+    - আমি লগইন তথ্য ভুলে গেছি
+
+- intent: hostel_info
+  examples: |
+    - হোস্টেল আছে কি?
+    - হোস্টেলের ফি কত?
+
+- intent: payment_methods
+  examples: |
+    - ফি কীভাবে দিতে হয়?
+    - কোন পেমেন্ট অপশন আছে?
+
+- intent: grievance_redressal
+  examples: |
+    - অভিযোগ কিভাবে করব?
+    - আমি একটি সমস্যা রিপোর্ট করতে চাই
+
+- intent: faculty_info
+  examples: |
+    - শিক্ষকগণের নাম কি?
+    - ফ্যাকাল্টি লিস্ট দিন
+
+- intent: syllabus_details
+  examples: |
+    - সিলেবাস কোথায় পাবো?
+    - সিলেবাসের পিডিএফ পাঠাও
+
+- intent: contact_info
+  examples: |
+    - ফোন নম্বর কী?
+    - হেল্পডেস্ক কিভাবে যোগাযোগ করব?
+
+- intent: holiday_list
+  examples: |
+    - ছুটির তালিকা দিন
+    - পরের ছুটি কখন?
+
+- intent: library_info
+  examples: |
+    - লাইব্রেরির সময় কী?
+    - লাইব্রেরি মেম্বারশিপ কিভাবে নেব?
+
+- intent: transportation
+  examples: |
+    - পরিবহন সুবিধা আছে কি?
+    - বাসের সময়সূচী কী?
+
+- intent: event_info
+  examples: |
+    - আগামি ইভেন্ট কি কি?
+    - পরবর্তী ইভেন্ট সম্পর্কে বলুন
+
+- intent: certificate_request
+  examples: |
+    - সার্টিফিকেটের জন্য আবেদন কিভাবে করব?
+    - আমার সার্টিফিকেট কখন পাব?
+
+- intent: location
+  examples: |
+    - কলেজের ঠিকানা কী?
+    - ক্যাম্পাসে কীভাবে যাব?

@@ -1,0 +1,68 @@
+version: "3.1"
+
+intents:
+  - greet
+  - fee_deadline
+  - scholarship_info
+  - office_hours
+  - admission_status
+  - office_hours
+  - admission_status
+  - course_info
+  - result_date
+  - password_reset
+  - hostel_info
+  - payment_methods
+  - grievance_redressal
+  - faculty_info
+  - syllabus_details
+  - contact_info
+  - holiday_list
+  - library_info
+  - transportation
+  - event_info
+  - certificate_request
+  - location
+
+
+responses:
+  utter_greet:
+    - text: "राम राम सा! मैं के मदद करूं?"
+  utter_fee_deadline:
+    - text: "फीस जमा करणी आखरी तारीख 30 सितम्बर 2025 है।"
+  utter_scholarship_info:
+    - text: "छात्रवृत्ति को आवेदन 15 अक्टूबर तक चालू है। पात्रता वेबसाइट पे देखो।"
+  utter_office_hours:
+    - text: "हमारा दफ्तर सोमवार ते शुक्रवार, 9 बजे सवेरे ते 5 बजे साँझ तक खुला है।"
+  utter_admission_status:
+    - text: "तुम्हारो दाखिला री स्थिति पोर्टल पे देख सकै हो।"
+  utter_course_info:
+    - text: "हम कंप्यूटर साइंस, व्यवसाय, अने इंजीनियरिंग कोर्स ऑफर करे हैं।"
+  utter_result_date:
+    - text: "परीक्षा रो नतीजो 10 अक्टूबर 2025 ने रिलीज होसी।"
+  utter_password_reset:
+    - text: "पासवर्ड रीसेट करबा खातर लॉगिन पेज देखो।"
+  utter_hostel_info:
+    - text: "हॉस्टल सुविधा उपलब्ध है, फीस ₹10,000 महीना थी शुरू।"
+  utter_payment_methods:
+    - text: "तुम बैंक ट्रांसफर, क्रेडिट कार्ड, या यूपीआई से फीस भर सकै हो।"
+  utter_grievance_redressal:
+    - text: "शिकायत फॉर्म हमारी वेबसाइट पे भरो।"
+  utter_faculty_info:
+    - text: "शिक्षक री सूची वेबसाइट पर मिली जासी।"
+  utter_syllabus_details:
+    - text: "सिलेबस PDF अकादमिक वेबसाइट से डाउनलोड करो।"
+  utter_contact_info:
+    - text: "संपर्क करो 123-456-7890 या support@institution.edu पे।"
+  utter_holiday_list:
+    - text: "आवता छुट्टियां 2 अक्टूबर अने 14 नवंबर हैं।"
+  utter_library_info:
+    - text: "लाइब्रेरी रोजाना सुबह 8 ते शाम 8 बजे तक खुली है।"
+  utter_transportation:
+    - text: "बस सेवा शहर के मुख्य रास्ता कवर करे है।"
+  utter_event_info:
+    - text: "सालाना सांस्कृतिक कार्यक्रम 1 दिसम्बर 2025 तें शुरू होसी।"
+  utter_certificate_request:
+    - text: "प्रमाण पत्र खातर छात्र पोर्टल पर फॉर्म भरो।"
+  utter_location:
+    - text: "कॉलेज रो पता 123 एजुकेशन स्ट्रीट, सिटीनेम है।"
