@@ -6,8 +6,6 @@ intents:
   - scholarship_info
   - office_hours
   - admission_status
-  - office_hours
-  - admission_status
   - course_info
   - result_date
   - password_reset
@@ -26,43 +24,61 @@ intents:
 
 responses:
   utter_greet:
-    - text: "नमस्कार! मी तुमची कशी मदत करू शकतो?"
-  utter_fee_deadline:
-    - text: "फी जमा करण्याची शेवटची तारीख ३० सप्टेंबर २०२५ आहे."
-  utter_scholarship_info:
-    - text: "शिष्यवृत्ती १५ ऑक्टोबरपर्यंत खुली आहे. पात्रता माहितीसाठी वेबसाईट पहा."
-  utter_office_hours:
-    - text: "आमची ऑफिस सोमवार ते शुक्रवार, सकाळी ९ ते संध्याकाळी ५ वाजेपर्यंत उघडी असते."
-  utter_admission_status:
-    - text: "तुमची प्रवेश स्थिती तुम्ही विद्यार्थी पोर्टलवर पाहू शकता."
-  utter_course_info:
-    - text: "आम्ही संगणक विज्ञान, व्यवसाय आणि अभियांत्रिकी कोर्सेस देतो."
-  utter_result_date:
-    - text: "परीक्षेचे निकाल १० ऑक्टोबर २०२५ रोजी जाहीर होतील."
-  utter_password_reset:
-    - text: "पासवर्ड रीसेट करण्यासाठी कृपया लॉगिन पेज वापरा."
-  utter_hostel_info:
-    - text: "हॉस्टेलची सोय उपलब्ध आहे, फी ₹१०,००० प्रति महिना पासून सुरु."
-  utter_payment_methods:
-    - text: "तुम्ही बँक ट्रान्सफर, क्रेडिट कार्ड किंवा यूपीआय वापरून फी भरू शकता."
-  utter_grievance_redressal:
-    - text: "कृपया आमच्या वेबसाईटवर तक्रार फॉर्म भरा."
-  utter_faculty_info:
-    - text: "फॅकल्टीची यादी वेबसाईटवर उपलब्ध आहे."
-  utter_syllabus_details:
-    - text: "सिलेबस PDF तुम्ही अकादमिक विभागातून डाउनलोड करू शकता."
-  utter_contact_info:
-    - text: "संपर्कासाठी १२३-४५६-७८९० किंवा support@institution.edu वर ईमेल करा."
-  utter_holiday_list:
-    - text: "आगामी सुट्ट्या २ ऑक्टोबर आणि १४ नोव्हेंबर रोजी आहेत."
-  utter_library_info:
-    - text: "लायब्ररी सकाळी ८ ते संध्याकाळी ८ वाजेपर्यंत उघडी असते."
-  utter_transportation:
-    - text: "शहराच्या मुख्य मार्गांसाठी बस सेवा उपलब्ध आहे."
-  utter_event_info:
-    - text: "वार्षिक सण १ डिसेंबर २०२५ पासून सुरू होणार आहे."
-  utter_certificate_request:
-    - text: "प्रमाणपत्र मागवण्यासाठी कृपया विद्यार्थी पोर्टलवर फॉर्म भरा."
-  utter_location:
-    - text: "कॉलेजचा पत्ता १२३ एज्युकेशन स्ट्रीट, सिटीनेम आहे."
+    - text: "নমস্কার! আমি কীভাবে সাহায্য করতে পারি?"
 
+  utter_fee_deadline:
+    - text: "ফি জমা দেওয়ার শেষ তারিখ ৩০ সেপ্টেম্বর ২০২৫।"
+
+  utter_scholarship_info:
+    - text: "স্কলারশিপ ১৫ অক্টোবর পর্যন্ত চলবে। যোগ্যতা ওয়েবসাইটে দেখুন।"
+
+  utter_office_hours:
+    - text: "আমাদের অফিস সোমবার থেকে শুক্রবার সকাল ৯টা থেকে সন্ধ্যা ৫টা পর্যন্ত খোলা থাকে।"
+
+  utter_admission_status:
+    - text: "আপনার ভর্তি স্থিতি পোর্টালে পরীক্ষা করতে পারেন।"
+
+  utter_course_info:
+    - text: "আমরা কম্পিউটার সায়েন্স, ব্যবসা, এবং ইঞ্জিনিয়ারিং কোর্স অফার করি।"
+
+  utter_result_date:
+    - text: "পরীক্ষার ফলাফল ১০ অক্টোবর ২০২৫ তারিখে ঘোষণা করা হবে।"
+
+  utter_password_reset:
+    - text: "পাসওয়ার্ড রিসেট করতে লগইন পেজ দেখুন।"
+
+  utter_hostel_info:
+    - text: "হোস্টেল সুবিধা উপলব্ধ, ফি মাসে ₹১০,০০০ থেকে শুরু।"
+
+  utter_payment_methods:
+    - text: "আপনি ব্যাংক ট্রান্সফার, ক্রেডিট কার্ড, অথবা UPI দিয়ে অর্থ প্রদান করতে পারেন।"
+
+  utter_grievance_redressal:
+    - text: "অনুগ্রহ করে আমাদের ওয়েবসাইটে অভিযোগ ফর্ম পূরণ করুন।"
+
+  utter_faculty_info:
+    - text: "ফ্যাকাল্টির তালিকা ওয়েবসাইটে পাওয়া যায়।"
+
+  utter_syllabus_details:
+    - text: "সিলেবাস পিডিএফ একাডেমিক সেকশনে ডাউনলোড করুন।"
+
+  utter_contact_info:
+    - text: "আমাদের সাথে যোগাযোগ করুন 123-456-7890 অথবা support@institution.edu এ।"
+
+  utter_holiday_list:
+    - text: "আসন্ন ছুটির দিনগুলি ২ অক্টোবর এবং ১৪ নভেম্বর।"
+
+  utter_library_info:
+    - text: "লাইব্রেরি সকাল ৮টা থেকে রাত ৮টা পর্যন্ত খোলা থাকে।"
+
+  utter_transportation:
+    - text: "আমাদের শহরের প্রধান রুটগুলির জন্য বাস সেবা রয়েছে।"
+
+  utter_event_info:
+    - text: "বার্ষিক সাংস্কৃতিক অনুষ্ঠান ১ ডিসেম্বর ২০২৫ থেকে শুরু হবে।"
+
+  utter_certificate_request:
+    - text: "সনদপত্রের জন্য শিক্ষার্থী পোর্টালে ফর্ম পূরণ করুন।"
+
+  utter_location:
+    - text: "আপনার ক্যাম্পাস ১২৩ এডুকেশন স্ট্রিট, সিটি নেম এ রয়েছে।"

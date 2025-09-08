@@ -1,0 +1,22 @@
+{
+  "0": "admission_status",
+  "1": "certificate_request",
+  "2": "contact_info",
+  "3": "course_info",
+  "4": "event_info",
+  "5": "faculty_info",
+  "6": "fee_deadline",
+  "7": "greet",
+  "8": "grievance_redressal",
+  "9": "holiday_list",
+  "10": "hostel_info",
+  "11": "library_info",
+  "12": "location",
+  "13": "office_hours",
+  "14": "password_reset",
+  "15": "payment_methods",
+  "16": "result_date",
+  "17": "scholarship_info",
+  "18": "syllabus_details",
+  "19": "transportation"
+}

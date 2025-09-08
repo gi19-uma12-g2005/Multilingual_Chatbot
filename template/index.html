@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Assistant Chatbot</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f5f5;
+    }
+
+    /* Floating Chat Button */
+    .chat-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #0078D7;
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+
+    /* Chat Window */
+    .chat-container {
+      width: 350px;
+      height: 500px;
+      border-radius: 10px;
+      overflow: hidden;
+      display: none; /* hidden by default */
+      flex-direction: column;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      z-index: 999;
+    }
+
+    .chat-header {
+      background: #0078D7;
+      color: white;
+      padding: 10px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .chat-header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 80%;
+    }
+
+    .bot {
+      background: #e5e5e5;
+      align-self: flex-start;
+    }
+
+    .user {
+      background: #0078D7;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #ddd;
+    }
+
+    .chat-input input {
+      flex: 1;
+      border: none;
+      padding: 10px;
+      outline: none;
+    }
+
+    .chat-input button {
+      background: #0078D7;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    .quick-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+
+    .quick-buttons button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      background: #eee;
+      cursor: pointer;
+    }
+
+    /* Language Selector */
+    .language-select {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-top: 1px solid #ddd;
+      background: #f9f9f9;
+      font-size: 14px;
+    }
+
+    .language-select label {
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    .language-select select {
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Chat Button -->
+  <button class="chat-button" id="chatToggle">💬 Chat with us</button>
+
+  <!-- Chatbot Window -->
+  <div class="chat-container" id="chatContainer">
+    <div class="chat-header">
+      🤖 Chatbot
+      <button id="closeChat">❌</button>
+    </div>
+    <div class="chat-box" id="chatBox"></div>
+
+    <!-- Quick FAQs -->
+    <div class="quick-buttons" id="faqButtons"></div>
+
+    <!-- Language Selector -->
+    <div class="language-select">
+      <label for="language">🌐 Language:</label>
+      <select id="language">
+        <option value="english" selected>English</option>
+        <option value="hindi">हिन्दी (Hindi)</option>
+        <option value="marathi">मराठी (Marathi)</option>
+        <option value="bangla">বাংলা (Bangla)</option>
+        <option value="rajasthani">राजस्थानी (Rajasthani)</option>
+      </select>
+    </div>
+
+    <!-- Input -->
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Type your message..." />
+      <button id="sendBtn">Send</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const chatContainer = document.getElementById("chatContainer");
+      const chatToggle = document.getElementById("chatToggle");
+      const closeChat = document.getElementById("closeChat");
+      const chatBox = document.getElementById("chatBox");
+      const userInput = document.getElementById("userInput");
+      const sendBtn = document.getElementById("sendBtn");
+      const languageSelect = document.getElementById("language");
+      const faqButtons = document.getElementById("faqButtons");
+
+      // FAQs in multiple languages
+      const faqTexts = {
+        english: {
+          welcome: "Hi 👋 You can ask me about fees, timetable, and scholarships.",
+          fees: "When is the last date of fee submission?",
+          timetable: "Show timetable",
+          scholarship: "Scholarship details"
+        },
+        hindi: {
+          welcome: "नमस्ते 👋 आप मुझसे फीस, टाइमटेबल और स्कॉलरशिप के बारे में पूछ सकते हैं।",
+          fees: "फीस जमा करने की आखिरी तारीख कब है?",
+          timetable: "टाइमटेबल दिखाइए",
+          scholarship: "स्कॉलरशिप की जानकारी"
+        },
+        marathi: {
+          welcome: "नमस्कार 👋 तुम्ही माझ्याकडे फी, वेळापत्रक आणि शिष्यवृत्तीबद्दल विचारू शकता.",
+          fees: "फी भरण्याची शेवटची तारीख कोणती?",
+          timetable: "वेळापत्रक दाखवा",
+          scholarship: "शिष्यवृत्तीची माहिती"
+        },
+        bangla: {
+          welcome: "হ্যালো 👋 আপনি আমাকে ফি, সময়সূচী এবং বৃত্তি সম্পর্কে জিজ্ঞাসা করতে পারেন।",
+          fees: "ফি জমা দেওয়ার শেষ তারিখ কবে?",
+          timetable: "সময়সূচি দেখাও",
+          scholarship: "বৃত্তির বিস্তারিত"
+        },
+        rajasthani: {
+          welcome: "राम राम 👋 तूं म्हारै सूं फीस, टाइमटेबल अर स्कॉलरशिप बारा में पूछ सकै है।",
+          fees: "फीस जमा करन रो आखरी दिन कद है?",
+          timetable: "टाइमटेबल देखाओ",
+          scholarship: "स्कॉलरशिप री जानकारी"
+        }
+      };
+
+      // Function to render FAQs in selected language
+      function renderFAQs(lang) {
+        chatBox.innerHTML = `<div class="message bot">${faqTexts[lang].welcome}</div>`;
+        faqButtons.innerHTML = `
+          <button onclick="sendMessage('${faqTexts[lang].fees}')">💰</button>
+          <button onclick="sendMessage('${faqTexts[lang].timetable}')">📅</button>
+          <button onclick="sendMessage('${faqTexts[lang].scholarship}')">🎓</button>
+        `;
+      }
+
+      // Show chat on button click
+      chatToggle.addEventListener("click", () => {
+        chatContainer.style.display = "flex";
+        renderFAQs(languageSelect.value);
+      });
+
+      // Close chat
+      closeChat.addEventListener("click", () => {
+        chatContainer.style.display = "none";
+      });
+
+      // Switch FAQs when language changes
+      languageSelect.addEventListener("change", () => {
+        renderFAQs(languageSelect.value);
+      });
+
+      // Append message
+      function appendMessage(sender, text) {
+        const msg = document.createElement("div");
+        msg.classList.add("message", sender);
+        msg.innerText = text;
+        chatBox.appendChild(msg);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      // Send message
+      window.sendMessage = async function (text) {
+        appendMessage("user", text);
+        const language = languageSelect.value;
+
+        try {
+          const response = await fetch("http://127.0.0.1:8000/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message: text, language: language })
+          });
+          const data = await response.json();
+          appendMessage("bot", data.reply || "Sorry, I didn’t get that.");
+        } catch (error) {
+          appendMessage("bot", "⚠ Backend not connected.");
+        }
+      };
+
+      // Handle input
+      function handleUserInput() {
+        const text = userInput.value.trim();
+        if (text !== "") {
+          sendMessage(text);
+          userInput.value = "";
+        }
+      }
+
+      userInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") handleUserInput();
+      });
+      sendBtn.addEventListener("click", handleUserInput);
+    });
+  </script>
+</body>
+</html>

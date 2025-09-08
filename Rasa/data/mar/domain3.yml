@@ -6,8 +6,6 @@ intents:
   - scholarship_info
   - office_hours
   - admission_status
-  - office_hours
-  - admission_status
   - course_info
   - result_date
   - password_reset
