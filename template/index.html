@@ -34,7 +34,7 @@
       height: 500px;
       border-radius: 10px;
       overflow: hidden;
-      display: none; /* hidden by default */
+      display: none;
       flex-direction: column;
       background: #fff;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -147,21 +147,16 @@
 </head>
 <body>
 
-  <!-- Floating Chat Button -->
   <button class="chat-button" id="chatToggle">💬 Chat with us</button>
 
-  <!-- Chatbot Window -->
   <div class="chat-container" id="chatContainer">
     <div class="chat-header">
       🤖 Chatbot
       <button id="closeChat">❌</button>
     </div>
     <div class="chat-box" id="chatBox"></div>
-
-    <!-- Quick FAQs -->
     <div class="quick-buttons" id="faqButtons"></div>
 
-    <!-- Language Selector -->
     <div class="language-select">
       <label for="language">🌐 Language:</label>
       <select id="language">
@@ -169,11 +164,9 @@
         <option value="hindi">हिन्दी (Hindi)</option>
         <option value="marathi">मराठी (Marathi)</option>
         <option value="bangla">বাংলা (Bangla)</option>
-        <option value="rajasthani">राजस्थानी (Rajasthani)</option>
       </select>
     </div>
 
-    <!-- Input -->
     <div class="chat-input">
       <input type="text" id="userInput" placeholder="Type your message..." />
       <button id="sendBtn">Send</button>
@@ -191,7 +184,6 @@
       const languageSelect = document.getElementById("language");
       const faqButtons = document.getElementById("faqButtons");
 
-      // FAQs in multiple languages
       const faqTexts = {
         english: {
           welcome: "Hi 👋 You can ask me about fees, timetable, and scholarships.",
@@ -216,16 +208,9 @@
           fees: "ফি জমা দেওয়ার শেষ তারিখ কবে?",
           timetable: "সময়সূচি দেখাও",
           scholarship: "বৃত্তির বিস্তারিত"
-        },
-        rajasthani: {
-          welcome: "राम राम 👋 तूं म्हारै सूं फीस, टाइमटेबल अर स्कॉलरशिप बारा में पूछ सकै है।",
-          fees: "फीस जमा करन रो आखरी दिन कद है?",
-          timetable: "टाइमटेबल देखाओ",
-          scholarship: "स्कॉलरशिप री जानकारी"
         }
       };
 
-      // Function to render FAQs in selected language
       function renderFAQs(lang) {
         chatBox.innerHTML = `<div class="message bot">${faqTexts[lang].welcome}</div>`;
         faqButtons.innerHTML = `
@@ -235,23 +220,19 @@
         `;
       }
 
-      // Show chat on button click
       chatToggle.addEventListener("click", () => {
         chatContainer.style.display = "flex";
         renderFAQs(languageSelect.value);
       });
 
-      // Close chat
       closeChat.addEventListener("click", () => {
         chatContainer.style.display = "none";
       });
 
-      // Switch FAQs when language changes
       languageSelect.addEventListener("change", () => {
         renderFAQs(languageSelect.value);
       });
 
-      // Append message
       function appendMessage(sender, text) {
         const msg = document.createElement("div");
         msg.classList.add("message", sender);
@@ -260,7 +241,6 @@
         chatBox.scrollTop = chatBox.scrollHeight;
       }
 
-      // Send message
       window.sendMessage = async function (text) {
         appendMessage("user", text);
         const language = languageSelect.value;
@@ -278,7 +258,6 @@
         }
       };
 
-      // Handle input
       function handleUserInput() {
         const text = userInput.value.trim();
         if (text !== "") {
