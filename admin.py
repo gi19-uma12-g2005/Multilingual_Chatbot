@@ -39,7 +39,7 @@ def admin():
         except mysql.connector.Error as e:
             return jsonify({"message": f"Database Error: {str(e)}"})
 
-    return render_template("ug1.html", error=error)
+    return render_template("admin.html", error=error)
 
 
 @app.route("/dashboard")

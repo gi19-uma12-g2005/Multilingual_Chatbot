@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <h2>Smart Mess - Admin</h2>
+    <a href="index.html">Logout</a>
+  </nav>
+  <div class="dashboard animate-fade">
+    <div class="card">
+      <h3>Update Menu</h3>
+      <input type="text" id="menu" placeholder="Enter today's menu" />
+      <button onclick="updateMenu()">Update</button>
+      <p id="menuMsg"></p>
+    </div>
+    <div class="card">
+      <h3>Reports</h3>
+      <p>Students present today: <span id="reportCount">0</span></p>
+    </div>
+  </div>
+  <script src="js/script.js"></script>
+</body>
+</html>
