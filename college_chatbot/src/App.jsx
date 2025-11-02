@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { ReactTransliterate } from "react-transliterate";
+import "react-transliterate/dist/index.css";
 
 export default function App() {
   const [messages, setMessages] = useState([
     { sender: "bot", text: "👋 Hi! I'm your College Assistant. How can I help you today?" },
   ]);
   const [input, setInput] = useState("");
-  const [language, setLanguage] = useState("en"); // Default: English
+  const [language, setLanguage] = useState("en");
   const [loading, setLoading] = useState(false);
 
-  // ✅ Send message to backend API
+  // 🌐 Backend API Call
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -18,7 +20,6 @@ export default function App() {
     setLoading(true);
 
     try {
-      // 🔗 Replace with your backend API (Rasa/Flask/FastAPI endpoint)
       const response = await fetch("http://localhost:5000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -26,7 +27,10 @@ export default function App() {
       });
 
       const data = await response.json();
-      const botResponse = { sender: "bot", text: data.reply || "Sorry, I didn’t understand that." };
+      const botResponse = {
+        sender: "bot",
+        text: data.reply || "Sorry, I didn’t understand that.",
+      };
       setMessages((prev) => [...prev, botResponse]);
     } catch (error) {
       setMessages((prev) => [
@@ -38,9 +42,16 @@ export default function App() {
     }
   };
 
-  // Press Enter to send
   const handleKeyDown = (e) => {
     if (e.key === "Enter") sendMessage();
+  };
+
+  // 🗣️ Transliteration Language Mapping
+  const translitLangMap = {
+    en: "en",
+    hi: "hi",
+    mr: "mr",
+    bn: "bn",
   };
 
   return (
@@ -50,8 +61,6 @@ export default function App() {
         {/* 🔵 Header */}
         <div className="bg-blue-600 text-white p-4 text-center font-semibold text-lg flex justify-between items-center">
           <span>🎓 College Chatbot</span>
-
-          {/* 🌐 Language Selector */}
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
@@ -60,7 +69,6 @@ export default function App() {
             <option value="en">English</option>
             <option value="hi">Hindi</option>
             <option value="mr">Marathi</option>
-            <option value="rj">Rajasthani</option>
             <option value="bn">Bengali</option>
           </select>
         </div>
@@ -70,9 +78,7 @@ export default function App() {
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={`flex ${
-                msg.sender === "user" ? "justify-end" : "justify-start"
-              }`}
+              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
                 className={`px-4 py-2 rounded-2xl max-w-[75%] text-sm ${
@@ -86,21 +92,21 @@ export default function App() {
             </div>
           ))}
 
-          {loading && (
-            <div className="text-gray-400 text-sm italic">🤖 Bot is typing...</div>
-          )}
+          {loading && <div className="text-gray-400 text-sm italic">🤖 Bot is typing...</div>}
         </div>
 
         {/* ⌨️ Input Section */}
         <div className="p-3 bg-white border-t flex items-center space-x-2">
-          <input
-            type="text"
+          <ReactTransliterate
+            key={language} // 🔁 re-render when language changes
+            lang={translitLangMap[language]}
+            value={input}
+            onChangeText={setInput}
+            onKeyDown={handleKeyDown}
             placeholder="Type your message..."
             className="flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={handleKeyDown}
           />
+
           <button
             onClick={sendMessage}
             className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-4 py-2 text-sm font-medium"
