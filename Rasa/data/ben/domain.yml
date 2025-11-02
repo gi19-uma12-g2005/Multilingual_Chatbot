@@ -1,0 +1,96 @@
+---
+version: "3.1"
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - fee_deadline
+  - scholarship_info
+  - office_hours
+  - admission_status
+  - course_info
+  - result_date
+  - password_reset
+  - hostel_info
+  - payment_methods
+  - grievance_redressal
+  - faculty_info
+  - syllabus_details
+  - contact_info
+  - holiday_list
+  - library_info
+  - transportation
+  - event_info
+  - certificate_request
+  - location
+  - nlu_fallback
+responses:
+  utter_greet:
+    - text: হ্যালো! কেমন আছো?
+    - text: নমস্কার! আমি কিভাবে সাহায্য করতে পারি?
+  utter_goodbye:
+    - text: বিদায়! আবার দেখা হবে।
+    - text: আলবিদা! ভালো থেকো।
+  utter_iamabot:
+    - text: আমি এখানে সাহায্য করতে এসেছি। কীভাবে সহায়তা করতে পারি?
+  utter_fee_deadline:
+    - text: ফি জমা দেওয়ার শেষ তারিখ ৩০ সেপ্টেম্বর।
+  utter_scholarship_info:
+    - text: স্কলারশিপের জন্য অনলাইনে আবেদন করুন।
+    - text: যোগ্যতা তোমার নম্বরের উপর নির্ভর করে।
+  utter_office_hours:
+    - text: অফিস সকাল ৯টা থেকে বিকেল ৫টা পর্যন্ত।
+    - text: "সময়: সোমবার-শুক্রবার, ৯-৫।"
+  utter_admission_status:
+    - text: তোমার ভর্তি অবস্থা অনলাইনে দেখতে পারো।
+    - text: আবেদন ফলাফল অফিসিয়াল পোর্টালে প্রকাশিত হবে।
+  utter_course_info:
+    - text: কোর্সের তথ্য ওয়েবসাইটে।
+    - text: ড্যাশবোর্ড থেকে কোর্স দেখো।
+  utter_result_date:
+    - text: ফলাফল ১৫ নভেম্বর প্রকাশিত হবে।
+    - text: তোমার রেজাল্ট অনলাইনে পাওয়া যাবে।
+  utter_password_reset:
+    - text: পাসওয়ার্ড রিসেট লিঙ্ক ইমেইলে পাঠানো হবে।
+    - text: পোর্টাল থেকে 'ফরগট পাসওয়ার্ড' বেছে নাও।
+  utter_hostel_info:
+    - text: হোস্টেলের তথ্য ওয়েবসাইটে আছে।
+    - text: আসন সংখ্যা সীমিত। আগে এলে আগে পাবেন।
+  utter_payment_methods:
+    - text: তুমি নেট ব্যাংকিং, UPI বা কার্ড ব্যবহার করে ফি দিতে পারো।
+    - text: ক্যাশ গ্রহণ করা হয় না।
+  utter_grievance_redressal:
+    - text: অভিযোগ ফর্ম ওয়েবসাইটে জমা দিন।
+    - text: স্টুডেন্ট কাউন্সেলর এর সাথে যোগাযোগ করুন।
+  utter_faculty_info:
+    - text: ফ্যাকাল্টির তথ্য একাডেমিক সেকশনে পাওয়া যাবে।
+    - text: শিক্ষকদের প্রোফাইল কলেজ ওয়েবসাইটে আছে।
+  utter_syllabus_details:
+    - text: সিলেবাস ওয়েবসাইটে দেওয়া হয়েছে।
+    - text: তুমি লাইব্রেরি থেকেও কপি নিতে পারো।
+  utter_contact_info:
+    - text: "যোগাযোগ: ০১২৩৪৫৬৭৮৯, ইমেল: info@college.edu"
+    - text: কলেজ অফিসের সাথে যোগাযোগ করুন।
+  utter_holiday_list:
+    - text: ছুটির তালিকা একাডেমিক ক্যালেন্ডারে আছে।
+    - text: "পরবর্তী ছুটি: দুর্গাপূজা, ২০ অক্টোবর।"
+  utter_library_info:
+    - text: লাইব্রেরি সকাল ৯টা থেকে রাত ৮টা পর্যন্ত খোলা থাকে।
+    - text: আইডি কার্ড দিয়ে বই ইস্যু করা যাবে।
+  utter_transportation:
+    - text: কলেজ বাস শহরের প্রধান স্থানগুলো থেকে চলাচল করে।
+    - text: পরিবহন তথ্য প্রশাসনিক অফিসে পাওয়া যাবে।
+  utter_event_info:
+    - text: কলেজ ফেস্ট ডিসেম্বর মাসে হবে।
+    - text: ইভেন্ট ক্যালেন্ডার ওয়েবসাইটে দেখুন।
+  utter_certificate_request:
+    - text: সার্টিফিকেটের জন্য অফিসে আবেদন করুন।
+    - text: আবেদন জমা দেওয়ার ৭ দিনের মধ্যে সার্টিফিকেট পাওয়া যাবে।
+  utter_location:
+    - text: "কলেজের অবস্থান: ১২৩, কলেজ রোড, কলকাতা।"
+    - text: গুগল ম্যাপে 'XYZ College' সার্চ করুন।
+  utter_nlu_fallback:
+    - text: "দুঃখিত, আমি শুধু কলেজ সম্পর্কিত প্রশ্নের উত্তর দিতে পারি।"
+
+actions:
+  - action_default_fallback

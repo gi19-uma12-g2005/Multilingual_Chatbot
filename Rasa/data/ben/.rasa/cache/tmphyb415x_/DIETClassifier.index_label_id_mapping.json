@@ -1,0 +1,23 @@
+{
+  "0": "admission_status",
+  "1": "certificate_request",
+  "2": "contact_info",
+  "3": "course_info",
+  "4": "event_info",
+  "5": "faculty_info",
+  "6": "fee_deadline",
+  "7": "greet",
+  "8": "grievance_redressal",
+  "9": "holiday_list",
+  "10": "hostel_info",
+  "11": "library_info",
+  "12": "location",
+  "13": "nlu_fallback",
+  "14": "office_hours",
+  "15": "password_reset",
+  "16": "payment_methods",
+  "17": "result_date",
+  "18": "scholarship_info",
+  "19": "syllabus_details",
+  "20": "transportation"
+}

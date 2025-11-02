@@ -1,0 +1,112 @@
+version: "3.1"
+
+stories:
+
+- story: greeting response
+  steps:
+    - intent: greet
+    - action: utter_greet
+
+- story: user asks fee deadline
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: fee_deadline
+    - action: utter_fee_deadline
+
+- story: user asks scholarship
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: scholarship_info
+    - action: utter_scholarship_info
+
+- story: ask office hours
+  steps:
+    - intent: office_hours
+    - action: utter_office_hours
+
+- story: ask admission status
+  steps:
+    - intent: admission_status
+    - action: utter_admission_status
+
+- story: ask course info
+  steps:
+    - intent: course_info
+    - action: utter_course_info
+
+- story: ask result date
+  steps:
+    - intent: result_date
+    - action: utter_result_date
+
+- story: ask password reset
+  steps:
+    - intent: password_reset
+    - action: utter_password_reset
+
+- story: ask hostel info
+  steps:
+    - intent: hostel_info
+    - action: utter_hostel_info
+
+- story: ask payment methods
+  steps:
+    - intent: payment_methods
+    - action: utter_payment_methods
+
+- story: ask grievance redressal
+  steps:
+    - intent: grievance_redressal
+    - action: utter_grievance_redressal
+
+- story: ask faculty info
+  steps:
+    - intent: faculty_info
+    - action: utter_faculty_info
+
+- story: ask syllabus details
+  steps:
+    - intent: syllabus_details
+    - action: utter_syllabus_details
+
+- story: ask contact info
+  steps:
+    - intent: contact_info
+    - action: utter_contact_info
+
+- story: ask holiday list
+  steps:
+    - intent: holiday_list
+    - action: utter_holiday_list
+
+- story: ask library info
+  steps:
+    - intent: library_info
+    - action: utter_library_info
+
+- story: ask transportation
+  steps:
+    - intent: transportation
+    - action: utter_transportation
+
+- story: ask event info
+  steps:
+    - intent: event_info
+    - action: utter_event_info
+
+- story: ask certificate request
+  steps:
+    - intent: certificate_request
+    - action: utter_certificate_request
+
+- story: ask location
+  steps:
+    - intent: location
+    - action: utter_location
+  
+-  story: fallback
+   steps:
+      - intent: nlu_fallback
+      - action: utter_nlu_fallback

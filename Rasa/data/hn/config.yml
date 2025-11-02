@@ -1,0 +1,23 @@
+language: hi
+pipeline:
+- name: WhitespaceTokenizer
+- name: RegexFeaturizer
+- name: LexicalSyntacticFeaturizer
+- name: CountVectorsFeaturizer
+- name: DIETClassifier
+  epochs: 100
+- name: EntitySynonymMapper
+- name: ResponseSelector
+- name: FallbackClassifier
+  threshold: 0.6
+  ambiguity_threshold: 0.3
+
+policies:
+- name: MemoizationPolicy
+- name: TEDPolicy
+  epochs: 100
+- name: RulePolicy
+  core_fallback_threshold: 0.4
+  core_fallback_action_name: "action_default_fallback"
+  enable_fallback_prediction: true
+assistant_id: 20250910-205130-radioactive-grid

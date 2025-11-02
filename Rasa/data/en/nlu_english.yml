@@ -1,0 +1,506 @@
+---
+version: "3.1"
+nlu:
+  - intent: greet
+    examples: |
+      - Hi
+      - Hello
+      - Hey
+      - Hey there
+      - Good morning
+      - Good afternoon
+      - Good evening
+      - Hi there
+      - Howdy
+      - Greetings
+      - Hello there
+      - Hey hi
+      - Hi, how are you?
+      - Hello, nice to meet you
+      - Morning!
+      - Evening!
+      - Hi, what's up?
+      - Hello, how's it going?
+      - Yo!
+      - Hi, hope you're doing well
+
+  - intent: fee_deadline
+    examples: |
+      - When is the last date for fee submission?
+      - Tell me the fee deadline
+      - Fee submission date?
+      - By when should I pay fees?
+      - What is the deadline for paying fees?
+      - When do I need to pay my fees?
+      - Last date for tuition fee payment?
+      - Fees due date?
+      - Could you tell me the fee submission deadline?
+      - Fee payment cutoff date?
+      - When does the fee submission close?
+      - Deadline for college fees?
+      - I want to know the fee due date
+      - What is the final date to pay fees?
+      - When is the fees deadline this semester?
+      - Fee submission last day?
+      - Can you provide the fee due date?
+      - Till when can I submit my fees?
+      - Tell me the final date for tuition payment
+      - Fee payment deadline, please
+      - Fee deadline
+      - fee
+
+  - intent: scholarship_info
+    examples: |
+      - Are there any scholarships available?
+      - Tell me about scholarships
+      - How can I get a scholarship?
+      - Scholarship eligibility details?
+      - Which scholarships can I apply for?
+      - Are scholarships offered this year?
+      - Can I get financial aid?
+      - Scholarship application process?
+      - Do you provide scholarships for students?
+      - Any merit-based scholarships available?
+      - Tell me about scholarship programs
+      - How do I apply for a scholarship?
+      - Is there a scholarship portal?
+      - Scholarship deadlines?
+      - Any scholarship announcements?
+      - What are the criteria for scholarships?
+      - Are scholarships for all courses?
+      - Need info about student aid
+      - Can I get a fee waiver?
+      - Scholarship support for new students?
+      - Scholarship
+  - intent: office_hours
+    examples: |
+      - What are the office hours?
+      - When is the administration office open?
+      - Office timing?
+      - When can I visit the office?
+      - Tell me the working hours
+      - Office opening and closing time?
+      - When does the office start?
+      - Till what time is the office open?
+      - Office schedule please
+      - Can I visit the office on Saturday?
+      - Office hours for students
+      - Administration working hours
+      - What time does the office open?
+      - Office closing time today?
+      - Is the office open on holidays?
+      - Monday office timings?
+      - When is the reception open?
+      - Office hours this week?
+      - Opening and closing schedule?
+      - Office visiting hours?
+      - Office
+
+  - intent: admission_status
+    examples: |
+      - What is my admission status?
+      - Has my admission been approved?
+      - Check my admission status
+      - Is my application confirmed?
+      - Admission result date?
+      - When will I know my admission status?
+      - Has my enrollment been processed?
+      - Can I check my admission online?
+      - Admission confirmation details
+      - How do I verify my admission?
+      - Admission update please
+      - Is my application accepted?
+      - Admission approval status?
+      - Any admission notifications?
+      - Check my application status
+      - Admission pending or confirmed?
+      - Admission confirmation email?
+      - Admission portal login status?
+      - Can I get admission info now?
+      - Admission verification process?
+      - Admission
+
+  - intent: course_info
+    examples: |
+     - Tell me about the courses
+     - Which subjects are included in the course?
+     - Course details?
+     - Can you provide information about programs?
+     - List of courses offered
+     - Course syllabus details
+     - Duration of the courses?
+     - Course eligibility criteria?
+     - Available specializations?
+     - How many courses are offered?
+     - Course fee structure?
+     - What courses are available this semester?
+     - Curriculum details?
+     - Course schedule?
+     - Can I enroll in this course?
+     - Course prerequisites?
+     - Are there online courses?
+     - Program details for new students
+     - Core and elective subjects?
+     - Detailed course outline?
+     - Course
+
+  - intent: result_date
+    examples: |
+      - When will results be declared?
+      - Exam result date?
+      - When can I see my results?
+      - Results announcement date?
+      - When will grades be out?
+      - Final exam results date?
+      - Can I check results online?
+      - Result publishing date?
+      - How do I view my results?
+      - When are results available?
+      - Results for this semester?
+      - Exam score declaration date?
+      - Can you tell me result date?
+      - Are results released yet?
+      - Where can I check results?
+      - When will the marks be published?
+      - Result notification date?
+      - Result update online?
+      - Examination outcome date?
+      - When will I know my grade?
+      - Result
+  - intent: password_reset
+    examples: |
+      - I forgot my password
+      - How can I reset my password?
+      - Reset login password
+      - Forgot my account password
+      - Can you help me change my password?
+      - Password reset instructions?
+      - I need to recover my password
+      - Forgot password, what to do?
+      - Password recovery process?
+      - How do I retrieve my password?
+      - Change my password
+      - I cannot login, forgot password
+      - Reset my account password
+      - Forgot login credentials
+      - Steps to reset password?
+      - How to recover forgotten password?
+      - Password assistance needed
+      - I lost my password
+      - Recover password online
+      - Help me reset my password
+
+
+  - intent: hostel_info
+    examples: |
+     - Is hostel available?
+     - Tell me about hostel facilities
+     - Hostel accommodation details?
+     - How can I apply for hostel?
+     - Hostel fee details?
+     - Boys hostel info
+     - Girls hostel info
+     - Hostel room availability?
+     - Is there on-campus accommodation?
+     - Hostel application process?
+     - Can I reserve a hostel room?
+     - Hostel rules and regulations?
+     - Any hostel for new students?
+     - Hostel capacity info?
+     - Room allocation process?
+     - Hostel facilities provided?
+     - Meals and hostel services?
+     - How to check hostel status?
+     - Hostel booking deadline?
+     - Is hostel currently open?
+     - Hostel
+
+  - intent: payment_methods
+    examples: |
+      - What are the payment options?
+      - Can I pay online?
+      - How do I pay fees?
+      - Payment methods for students?
+      - Is UPI accepted for fees?
+      - Can I pay via net banking?
+      - Payment through credit card?
+      - How to pay tuition fees?
+      - Fee payment procedure?
+      - Available payment gateways?
+      - Cash payment accepted?
+      - Fee installment options?
+      - Online payment link?
+      - Can I pay at the office?
+      - Payment portal info?
+      - How do I complete my payment?
+      - Payment deadline?
+      - Any mobile app for payment?
+      - Payment confirmation process?
+      - Bank transfer for fees?
+      - Payment
+
+  - intent: grievance_redressal
+    examples: |
+      - How to file a complaint?
+      - I want to raise a grievance
+      - Where to report issues?
+      - Complaint procedure?
+      - Grievance submission process
+      - Can I lodge a complaint online?
+      - Whom should I contact for grievances?
+      - Grievance redressal cell info
+      - Steps to raise a grievance
+      - How do I report a problem?
+      - Report misconduct procedure
+      - Who handles student complaints?
+      - Issue reporting guidelines
+      - Submit complaint portal
+      - Filing grievance form
+      - Complaint escalation process
+      - Contact details for grievances
+      - Help with grievance submission
+      - Can I submit anonymously?
+      - Grievance resolution timeline?
+
+  - intent: faculty_info
+    examples: |
+      - Tell me about the faculty
+      - Who are the teachers?
+      - Faculty details?
+      - List of professors?
+      - Faculty members for my course
+      - How many faculty are there?
+      - Contact info of faculty?
+      - Faculty qualifications?
+      - Department faculty list
+      - Who is the head of department?
+      - Faculty office hours?
+      - Visiting professors info
+      - Can I email a teacher?
+      - Faculty specialization details
+      - Faculty schedule
+      - Faculty for first-year students
+      - Faculty research info
+      - Part-time faculty details
+      - Faculty support contact
+      - Faculty announcement updates
+
+  - intent: syllabus_details
+    examples: |
+      - Show me the syllabus
+      - What topics are in the syllabus?
+      - Course curriculum details?
+      - Syllabus for my program?
+      - Can I get the syllabus online?
+      - Syllabus PDF available?
+      - Subject-wise syllabus info
+      - Detailed syllabus for semester
+      - Where can I find syllabus?
+      - Academic syllabus outline
+      - Course content details
+      - Syllabus update notification
+      - Syllabus for new students
+      - What chapters are included?
+      - Syllabus for final exams
+      - Syllabus download link?
+      - Department syllabus info
+      - Syllabus structure?
+      - List of subjects in syllabus
+      - Complete syllabus overview
+      - Syllabus
+
+  - intent: contact_info
+    examples: |
+      - How can I contact the college?
+      - College phone number
+      - Email address of administration
+      - Contact details?
+      - Who do I contact for info?
+      - Admin office contact info
+      - College website contact page
+      - Contact info for student services
+      - Office email address
+      - Can I call the administration?
+      - WhatsApp contact of college?
+      - Is there a helpline number?
+      - Contact support for students
+      - Can I visit the office for contact?
+      - Campus contact information
+      - How to reach the college?
+      - Emergency contact info
+      - Contact portal link?
+      - Administration phone/email?
+      - College reception contact?
+      - Contact
+
+  - intent: holiday_list
+    examples: |
+      - What are the upcoming holidays?
+      - Show me the holiday list
+      - List of public holidays
+      - College holiday schedule?
+      - When is the next holiday?
+      - Official holiday dates?
+      - Holiday calendar for students
+      - Is the college open tomorrow?
+      - Upcoming festival holidays?
+      - Annual holiday list?
+      - Academic year holidays
+      - Holiday notification details
+      - How many holidays this month?
+      - Semester holiday schedule
+      - Holiday announcement online
+      - When do classes close for holidays?
+      - Holiday dates PDF?
+      - Check college holidays
+      - Holiday planning info
+      - Any special holidays this year?
+      - Holiday
+      - Holidays
+
+  - intent: library_info
+    examples: |
+      - Tell me about the library
+      - Library opening hours
+      - How to borrow books?
+      - Library facilities available?
+      - Library working schedule
+      - Can I access library online?
+      - Library rules and regulations
+      - Library membership process
+      - Number of books in library?
+      - Library timings today
+      - Library for new students
+      - How do I reserve books?
+      - Library contact info
+      - Library digital resources
+      - Library borrowing limits
+      - Library reading room info
+      - Library staff contact
+      - Library opening on weekends?
+      - Library catalog online
+      - Library late fee details
+
+  - intent: transportation
+    examples: |
+      - Is bus service available?
+      - How do I reach the campus?
+      - College transport info
+      - Shuttle/bus facilities?
+      - Bus routes for students
+      - Pickup and drop timings?
+      - College transport schedule
+      - Are buses free for students?
+      - Transport contact info
+      - Campus shuttle availability?
+      - How many buses run daily?
+      - Bus registration process
+      - Bus routes map?
+      - Bicycle facilities on campus?
+      - Car parking info?
+      - College van services?
+      - Transportation office contact
+      - Can I book a seat in bus?
+      - Bus fees and payment
+      - Bus timing notification
+
+  - intent: event_info
+    examples: |
+      - Tell me about upcoming events
+      - Are there any workshops or seminars?
+      - Event schedule?
+      - Cultural programs list?
+      - College fest information
+      - Technical workshop dates
+      - Sports event calendar
+      - Upcoming student events
+      - Event notification online
+      - Event registration process
+      - Annual function details
+      - Guest lectures schedule
+      - Can I attend events?
+      - Event entry requirements
+      - Event organizer contact
+      - Events for first-year students
+      - Seminar topics and dates
+      - College fest registration
+      - Event venue info
+      - Special events announcement
+      - Events
+      - Event
+
+  - intent: certificate_request
+    examples: |
+      - How to request a certificate?
+      - Apply for certificates
+      - Certificate application process
+      - Can I get a course completion certificate?
+      - How to request academic documents?
+      - Certificate request portal
+      - Apply for experience certificate
+      - Request degree certificate
+      - Certificate issuance process
+      - Can I download certificates online?
+      - Official certificate request
+      - Certificate fee details
+      - Request transcript
+      - Student certificate request
+      - Certificate verification info
+      - How long does it take for a certificate?
+      - Certificate pickup process
+      - Certificate submission guidelines
+      - Apply for provisional certificate
+      - Certificate processing timeline
+
+  - intent: location
+    examples: |
+      - Where is the college located?
+      - College address?
+      - How to reach the campus?
+      - Location details?
+      - Campus map information
+      - Nearest landmarks?
+      - Directions to college
+      - College GPS coordinates
+      - Address of the administration office
+      - Where can I find the college?
+      - College location on map
+      - Local transport directions?
+      - Campus location guide
+      - Is there a parking area?
+      - Which city is the college in?
+      - How far is the college from city center?
+      - College area description
+      - Nearby metro station info
+      - College location PDF
+      - Directions for visitors
+
+  - intent: nlu_fallback
+    examples: |
+      - I didn't understand that
+      - Can you repeat?
+      - Sorry, I didn't get it
+      - I don't know the answer
+      - Could you rephrase?
+      - I'm not sure what you mean
+      - Can you clarify?
+      - That's unclear
+      - I couldn't understand
+      - Please say that again
+      - I didn't catch that
+      - What do you mean?
+      - I cannot process that
+      - Please explain differently
+      - Not sure how to respond
+      - Can you ask in another way?
+      - I'm confused by that
+      - I don't understand
+      - Can you say it another way?
+      - Sorry, I can't answer that
+
+
+
+
+
+
+

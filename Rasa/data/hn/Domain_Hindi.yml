@@ -1,0 +1,98 @@
+---
+version: "3.1"
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - fee_deadline
+  - scholarship_info
+  - office_hours
+  - admission_status
+  - course_info
+  - result_date
+  - password_reset
+  - hostel_info
+  - payment_methods
+  - grievance_redressal
+  - faculty_info
+  - syllabus_details
+  - contact_info
+  - holiday_list
+  - library_info
+  - transportation
+  - event_info
+  - certificate_request
+  - location
+  - nlu_fallback
+responses:
+  utter_goodbye:
+    - text: "नमस्ते! फिर मिलेंगे।"
+    - text: "ध्यान रखना! अलविदा।"
+  utter_iamabot:
+    - text: "मैं एक बॉट हूँ, आपकी सहायता के लिए यहाँ हूँ।"
+    - text: "नमस्ते! मैं आपका वर्चुअल असिस्टेंट हूँ।"
+  utter_greet:
+    - text: "नमस्ते! आप कैसे हैं?"
+    - text: "हैलो! मैं आपकी मदद कैसे कर सकता हूँ?"
+  utter_fee_deadline:
+    - text: "शुल्क जमा करने की अंतिम तिथि 30 सितंबर है।"
+    - text: "कृपया 30 सितंबर तक शुल्क जमा करें।"
+  utter_scholarship_info:
+    - text: "छात्रवृत्ति के लिए ऑनलाइन आवेदन करें।"
+    - text: "योग्यता अंक पर आधारित है।"
+  utter_office_hours:
+    - text: "ऑफिस समय सुबह 9 बजे से शाम 5 बजे तक है।"
+    - text: "सोमवार से शुक्रवार तक कार्यालय समय: 9-5।"
+  utter_admission_status:
+    - text: "आप अपना प्रवेश स्थिति ऑनलाइन देख सकते हैं।"
+    - text: "आवेदन परिणाम आधिकारिक पोर्टल पर प्रकाशित होंगे।"
+  utter_course_info:
+    - text: "कोर्स की जानकारी वेबसाइट पर उपलब्ध है।"
+    - text: "डैशबोर्ड से कोर्स देखें।"
+  utter_result_date:
+    - text: "परीक्षा परिणाम 15 अक्टूबर को प्रकाशित होंगे।"
+    - text: "आपका परिणाम ऑनलाइन 15 अक्टूबर को उपलब्ध होगा।"
+  utter_password_reset:
+    - text: "‘पासवर्ड भूल गए’ लिंक से रीसेट करें।"
+    - text: "नया पासवर्ड बनाने के निर्देश का पालन करें।"
+  utter_hostel_info:
+    - text: "हॉस्टल आवेदन ऑनलाइन उपलब्ध हैं।"
+    - text: "हॉस्टल की जानकारी के लिए प्रशासन कार्यालय से संपर्क करें।"
+  utter_payment_methods:
+    - text: "आप शुल्क ऑनलाइन या बैंक ड्राफ्ट के माध्यम से जमा कर सकते हैं।"
+    - text: "ऑनलाइन भुगतान पोर्टल से भुगतान करें।"
+  utter_grievance_redressal:
+    - text: "शिकायत निवारण पोर्टल पर अपनी शिकायत दर्ज करें।"
+    - text: "समस्या होने पर छात्र कल्याण विभाग से संपर्क करें।"
+  utter_faculty_info:
+    - text: "फैकल्टी की जानकारी कॉलेज वेबसाइट पर उपलब्ध है।"
+    - text: "आप शिक्षक का ईमेल वेबसाइट पर पा सकते हैं।"
+  utter_syllabus_details:
+    - text: "सिलेबस कॉलेज पोर्टल से डाउनलोड करें।"
+    - text: "प्रत्येक विषय का विस्तृत पाठ्यक्रम उपलब्ध है।"
+  utter_contact_info:
+    - text: "कॉलेज का संपर्क नंबर: 01234-567890"
+    - text: "ईमेल: info@college.edu"
+  utter_holiday_list:
+    - text: "छुट्टियों की सूची कॉलेज वेबसाइट पर उपलब्ध है।"
+    - text: "आगामी अवकाश: 2 अक्टूबर (गांधी जयंती)।"
+  utter_library_info:
+    - text: "लाइब्रेरी सुबह 9 बजे से शाम 8 बजे तक खुली रहती है।"
+    - text: "आप अपनी आईडी कार्ड से किताबें जारी कर सकते हैं।"
+  utter_transportation:
+    - text: "कॉलेज बसें सुबह 7 बजे विभिन्न मार्गों से चलती हैं।"
+    - text: "परिवहन विवरण वेबसाइट पर उपलब्ध है।"
+  utter_event_info:
+    - text: "अगला कॉलेज इवेंट 20 अक्टूबर को होगा।"
+    - text: "आप इवेंट का विवरण नोटिस बोर्ड पर देख सकते हैं।"
+  utter_certificate_request:
+    - text: "प्रमाणपत्र के लिए आवेदन फॉर्म जमा करें।"
+    - text: "आप प्रमाणपत्र कार्यालय से प्राप्त कर सकते हैं।"
+  utter_location:
+    - text: "कॉलेज का पता: XYZ रोड, नई दिल्ली।"
+    - text: "लोकेशन: नजदीकी मेट्रो स्टेशन से 2 किमी।"
+  utter_nlu_fallback:
+    - text: "माफ़ करें, मैं समझ नहीं पाया। कृपया दोबारा लिखें।"
+    - text: "कृपया स्पष्ट करें कि आप क्या पूछना चाहते हैं।"
+actions:
+  - action_default_fallback

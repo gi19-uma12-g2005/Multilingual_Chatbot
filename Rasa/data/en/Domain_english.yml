@@ -1,0 +1,95 @@
+---
+version: "3.1"
+intents:
+  - greet
+  - goodbye
+  - bot_challenge
+  - fee_deadline
+  - scholarship_info
+  - office_hours
+  - admission_status
+  - course_info
+  - result_date
+  - password_reset
+  - hostel_info
+  - payment_methods
+  - grievance_redressal
+  - faculty_info
+  - syllabus_details
+  - contact_info
+  - holiday_list
+  - library_info
+  - transportation
+  - event_info
+  - certificate_request
+  - location
+  - nlu_fallback
+responses:
+  utter_greet:
+    - text: Hello! How are you today?
+    - text: Hi! How can I assist you?
+  utter_goodbye:
+    - text: Goodbye! See you again.
+    - text: Farewell! Take care.
+  utter_iamabot:
+    - text: I'm here to help. How can I assist you?
+  utter_fee_deadline:
+    - text: The fee submission deadline is 30th September.
+  utter_scholarship_info:
+    - text: You can apply for scholarships online.
+    - text: Eligibility depends on your grades.
+  utter_office_hours:
+    - text: The office is open from 9 AM to 5 PM.
+    - text: Office hours are Monday to Friday, 9 to 5.
+  utter_admission_status:
+    - text: You can check your admission status online.
+    - text: Admission results are published on the official portal.
+  utter_course_info:
+    - text: Course details are available on the website.
+    - text: You can see courses on the dashboard.
+  utter_result_date:
+    - text: Results will be published on 15th November.
+    - text: You can check your results online.
+  utter_password_reset:
+    - text: A password reset link will be sent to your email.
+    - text: Use the 'Forgot Password' option on the portal.
+  utter_hostel_info:
+    - text: Hostel information is available on the website.
+    - text: Seats are limited and allotted on a first-come basis.
+  utter_payment_methods:
+    - text: You can pay fees via net banking, UPI, or card.
+    - text: Cash payments are not accepted.
+  utter_grievance_redressal:
+    - text: Submit your grievance form on the website.
+    - text: Contact the student counselor for assistance.
+  utter_faculty_info:
+    - text: Faculty information is found in the academic section.
+    - text: Teacher profiles are available on the college website.
+  utter_syllabus_details:
+    - text: Syllabus details are provided on the website.
+    - text: You can also obtain copies from the library.
+  utter_contact_info:
+    - text: "Contact: 0123456789, Email: info@college.edu"
+    - text: Please contact the college office for assistance.
+  utter_holiday_list:
+    - text: Holiday list is available in the academic calendar.
+    - text: "Next holiday: Durga Puja, 20th October."
+  utter_library_info:
+    - text: Library is open from 9 AM to 8 PM.
+    - text: Books can be issued with a valid ID card.
+  utter_transportation:
+    - text: College buses run from main city areas.
+    - text: Transportation information is available at the admin office.
+  utter_event_info:
+    - text: The college fest will be in December.
+    - text: View the event calendar on the website.
+  utter_certificate_request:
+    - text: Apply for certificates at the office.
+    - text: Certificates will be ready within 7 days of application.
+  utter_location:
+    - text: "College location: 123, College Road, Kolkata."
+    - text: Search for 'XYZ College' on Google Maps.
+  utter_nlu_fallback:
+    - text: Sorry, I can only answer questions related to the college.
+actions:
+  - action_default_fallback
