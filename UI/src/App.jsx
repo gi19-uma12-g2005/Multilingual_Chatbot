@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { ReactTransliterate } from "react-transliterate";
 import "react-transliterate/dist/index.css";
+import "./App.css"; // 👈 New CSS file we’ll define below
 
 export default function App() {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "👋 Hi! I'm your College Assistant. How can I help you today?" },
+    { sender: "bot", text: "Hi! I'm your College Assistant. How can I help you today?" },
   ]);
   const [input, setInput] = useState("");
   const [language, setLanguage] = useState("en");
   const [loading, setLoading] = useState(false);
 
-  // 🌐 Backend API Call
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -35,7 +35,7 @@ export default function App() {
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "⚠️ Server error. Please try again later." },
+        { sender: "bot", text: "Server error. Please try again later." },
       ]);
     } finally {
       setLoading(false);
@@ -46,7 +46,6 @@ export default function App() {
     if (e.key === "Enter") sendMessage();
   };
 
-  // 🗣️ Transliteration Language Mapping
   const translitLangMap = {
     en: "en",
     hi: "hi",
@@ -55,16 +54,15 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
-      <div className="w-full max-w-md bg-white shadow-xl rounded-2xl overflow-hidden flex flex-col h-[80vh]">
-
-        {/* 🔵 Header */}
-        <div className="bg-blue-600 text-white p-4 text-center font-semibold text-lg flex justify-between items-center">
-          <span>🎓 College Chatbot</span>
+    <div className="app-container">
+      <div className="chat-box">
+        {/* Header */}
+        <div className="chat-header">
+          <span>College Chatbot</span>
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
-            className="bg-blue-700 text-white text-sm rounded-lg px-2 py-1 focus:outline-none"
+            className="lang-select"
           >
             <option value="en">English</option>
             <option value="hi">Hindi</option>
@@ -73,44 +71,32 @@ export default function App() {
           </select>
         </div>
 
-        {/* 💬 Chat Area */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
+        {/* Chat Area */}
+        <div className="chat-area">
           {messages.map((msg, index) => (
             <div
               key={index}
-              className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+              className={`message ${msg.sender === "user" ? "user" : "bot"}`}
             >
-              <div
-                className={`px-4 py-2 rounded-2xl max-w-[75%] text-sm ${
-                  msg.sender === "user"
-                    ? "bg-blue-500 text-white rounded-br-none"
-                    : "bg-gray-200 text-gray-900 rounded-bl-none"
-                }`}
-              >
-                {msg.text}
-              </div>
+              {msg.text}
             </div>
           ))}
 
-          {loading && <div className="text-gray-400 text-sm italic">🤖 Bot is typing...</div>}
+          {loading && <div className="typing">Bot is typing...</div>}
         </div>
 
-        {/* ⌨️ Input Section */}
-        <div className="p-3 bg-white border-t flex items-center space-x-2">
+        {/* Input Area */}
+        <div className="chat-input">
           <ReactTransliterate
-            key={language} // 🔁 re-render when language changes
+            key={language}
             lang={translitLangMap[language]}
             value={input}
             onChangeText={setInput}
             onKeyDown={handleKeyDown}
             placeholder="Type your message..."
-            className="flex-1 border rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="input-field"
           />
-
-          <button
-            onClick={sendMessage}
-            className="bg-blue-500 hover:bg-blue-600 text-white rounded-xl px-4 py-2 text-sm font-medium"
-          >
+          <button onClick={sendMessage} className="send-btn">
             Send
           </button>
         </div>
