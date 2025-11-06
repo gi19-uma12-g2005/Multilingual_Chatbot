@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ReactTransliterate } from "react-transliterate";
 import "react-transliterate/dist/index.css";
-import "./App.css"; // 👈 New CSS file we’ll define below
+import "./App.css";
 
 export default function App() {
   const [messages, setMessages] = useState([
@@ -15,12 +15,12 @@ export default function App() {
     if (!input.trim()) return;
 
     const newUserMessage = { sender: "user", text: input };
-    setMessages([...messages, newUserMessage]);
+    setMessages((prev) => [...prev, newUserMessage]);
     setInput("");
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:5000/chat", {
+      const response = await fetch("https://171d3658063e.ngrok-free.app/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input, lang: language }),

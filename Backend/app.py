@@ -11,10 +11,10 @@ CORS(app)  # Allow requests from your React frontend
 
 # 🧠 Paths to trained Rasa models
 MODEL_PATHS = {
-    "en": "D:/Umang_Coding/AI_chatbot/Rasa/data/models/model_en.tar.gz",
-    "hi": "D:/Umang_Coding/AI_chatbot/Rasa/data/models/model_hi.tar.gz",
-    "mr": "D:/Umang_Coding/AI_chatbot/Rasa/data/models/model_mr.tar.gz",
-    "bn": "D:/Umang_Coding/AI_chatbot/Rasa/data/models/model_bn.tar.gz"
+    "en": "D:/Umang_Coding/AI_chatbot/Backend/models\model_en.tar.gz",
+    "hi": "D:/Umang_Coding/AI_chatbot/Backend/models/model_hi.tar.gz",
+    "mr": "D:/Umang_Coding/AI_chatbot/Backend/models/model_mr.tar.gz",
+    "bn": "D:/Umang_Coding/AI_chatbot/Backend/models/model_bn.tar.gz"
 }
 
 # Cache for loaded models to prevent reloading
