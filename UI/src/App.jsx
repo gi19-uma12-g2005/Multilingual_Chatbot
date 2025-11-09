@@ -11,6 +11,13 @@ export default function App() {
   const [language, setLanguage] = useState("en");
   const [loading, setLoading] = useState(false);
 
+  // Helper: remove emojis from text
+  const removeEmojis = (text = "") => {
+    const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu;
+    return String(text).replace(emojiRegex, "");
+  };
+
+  // 🔹 Send message to backend Flask API
   const sendMessage = async () => {
     if (!input.trim()) return;
 
@@ -26,16 +33,32 @@ export default function App() {
         body: JSON.stringify({ message: input, lang: language }),
       });
 
-      const data = await response.json();
+      let data = { reply: "" };
+      if (response.ok) {
+        const ct = response.headers.get("content-type") || "";
+        if (ct.includes("application/json")) {
+          data = await response.json();
+        } else {
+          // Backend returned plain text (or HTML); use as reply
+          const text = await response.text();
+          data = { reply: text };
+        }
+      } else {
+        // Non-2xx response: read text to show meaningful message
+        const text = await response.text();
+        data = { reply: `Server error: ${text}` };
+      }
+
+      const botText = removeEmojis(data.reply || "Sorry, I didn't understand that.");
       const botResponse = {
         sender: "bot",
-        text: data.reply || "Sorry, I didn’t understand that.",
+        text: botText,
       };
       setMessages((prev) => [...prev, botResponse]);
     } catch (error) {
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: "Server error. Please try again later." },
+        { sender: "bot", text: removeEmojis("Server error. Please try again later.") },
       ]);
     } finally {
       setLoading(false);
@@ -43,7 +66,37 @@ export default function App() {
   };
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") sendMessage();
+    if (e.key === "Enter" && !e.shiftKey) {
+      // Prevent default newline behavior when not using Shift+Enter
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
+  // 🔹 Detect and render clickable links in bot messages
+  const renderMessage = (text) => {
+    if (!text) return null;
+    // Use non-global regex to avoid test() stateful behavior
+    const urlRegex = /(https?:\/\/[^\s]+)/;
+    const parts = text.split(urlRegex);
+
+    return parts.map((part, index) => {
+      if (urlRegex.test(part)) {
+        return (
+          <a
+            key={index}
+            href={part}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline hover:text-blue-800 wrap-break-word"
+          >
+            {part}
+          </a>
+        );
+      } else {
+        return <span key={index}>{part}</span>;
+      }
+    });
   };
 
   const translitLangMap = {
@@ -78,7 +131,7 @@ export default function App() {
               key={index}
               className={`message ${msg.sender === "user" ? "user" : "bot"}`}
             >
-              {msg.text}
+              {msg.sender === "bot" ? renderMessage(msg.text) : msg.text}
             </div>
           ))}
 
