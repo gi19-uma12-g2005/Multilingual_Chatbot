@@ -18,7 +18,7 @@ import asyncio
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from deep_translator import MyMemoryTranslator, GoogleTranslator
-from fuzzywuzzy import fuzz
+from rapidfuzz import fuzz
 
 # -----------------------------------------------------------
 # ✅ CONFIGURATION
@@ -106,6 +106,13 @@ def _fetch_sheet_rows(force_refresh: bool = False):
         try:
             ws = client.open_by_key(SHEET_ID).sheet1
             rows = ws.get_all_records()
+            
+            # 🚀 OPTIMIZATION: Pre-calculate tokens
+            for row in rows:
+                q = str(row.get("question", "")).strip()
+                row["_tokens"] = _token_set(q)
+                row["_norm_q"] = _normalize(q)
+
             _sheet_cache = rows
             _sheet_last_fetch = now
             log.info(f"✅ Sheet loaded: {len(rows)} rows")
@@ -185,8 +192,14 @@ def rag_search(user_message: str, lang: str) -> Optional[str]:
         if not q or not a:
             continue
 
-        norm_q = _normalize(q)
-        q_tokens = _token_set(q)
+        # 🚀 OPTIMIZATION: Use cached tokens
+        norm_q = row.get("_norm_q")
+        if norm_q is None:
+            norm_q = _normalize(q)
+            
+        q_tokens = row.get("_tokens")
+        if q_tokens is None:
+            q_tokens = _token_set(q)
 
         token_score = len(user_tokens & q_tokens) / max(1, len(user_tokens | q_tokens))
         fuzzy_score = fuzz.token_set_ratio(user_norm, norm_q) / 100.0
@@ -201,7 +214,7 @@ def rag_search(user_message: str, lang: str) -> Optional[str]:
                     if syn in user_lower:
                         intent_bonus += 0.12
                         break
-
+        
         score = (0.4 * token_score) + (0.5 * fuzzy_score) + intent_bonus
 
         if score > best_score:
