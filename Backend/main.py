@@ -9,15 +9,17 @@ import re
 import logging
 import signal
 import threading
+import asyncio
+from contextlib import asynccontextmanager
 from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
 from collections import defaultdict, deque
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Set
 
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 from rasa.core.agent import Agent
-import asyncio
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -57,15 +59,6 @@ logging.basicConfig(
 log = logging.getLogger("chatbot")
 
 # -----------------------------------------------------------
-# ✅ FLASK SETUP
-# -----------------------------------------------------------
-app = Flask(__name__)
-CORS(app)
-
-loop = asyncio.new_event_loop()
-asyncio.set_event_loop(loop)
-
-# -----------------------------------------------------------
 # ✅ GLOBAL CACHES & THREADS
 # -----------------------------------------------------------
 _sheet_cache: List[Dict[str, Any]] = []
@@ -97,6 +90,17 @@ def _sheet_client():
     except Exception as e:
         log.error(f"❌ Google Sheet auth failed: {e}")
         return None
+
+
+def _normalize(text: Optional[str]) -> str:
+    if not text:
+        return ""
+    text = re.sub(r"[^a-z0-9\u0900-\u097F\s]", " ", text.strip().lower())
+    return re.sub(r"\s+", " ", text)
+
+
+def _token_set(text: str) -> Set[str]:
+    return set(_normalize(text).split())
 
 
 def _fetch_sheet_rows(force_refresh: bool = False):
@@ -152,19 +156,6 @@ def _safe_load_agent(lang):
 def preload_all_models():
     for lang in MODEL_PATHS.keys():
         _bg_executor.submit(_safe_load_agent, lang)
-
-# -----------------------------------------------------------
-# ✅ SMART NORMALIZATION
-# -----------------------------------------------------------
-def _normalize(text: Optional[str]) -> str:
-    if not text:
-        return ""
-    text = re.sub(r"[^a-z0-9\u0900-\u097F\s]", " ", text.strip().lower())
-    return re.sub(r"\s+", " ", text)
-
-
-def _token_set(text: str):
-    return set(_normalize(text).split())
 
 # -----------------------------------------------------------
 # ✅ SMART INTENT-AWARE RAG SEARCH
@@ -241,7 +232,7 @@ def rag_search(user_message: str, lang: str) -> Optional[str]:
     return None
 
 # -----------------------------------------------------------
-# ✅ TRANSLATION (MyMemory for preload, Google for runtime)
+# ✅ TRANSLATION
 # -----------------------------------------------------------
 @lru_cache(maxsize=TRANSLATION_CACHE_SIZE)
 def _translate_cached(text: str, target_lang: str, preload: bool = False) -> str:
@@ -252,7 +243,18 @@ def _translate_cached(text: str, target_lang: str, preload: bool = False) -> str
 
     try:
         if preload:
-            mm = MyMemoryTranslator(source="en", target=target_lang)
+            # MyMemory requires specific language pairs (e.g., en-IN|hi-IN)
+            # We map generic codes to specific ones for better support
+            lang_map = {
+                "hi": "hi-IN",
+                "mr": "mr-IN",
+                "bn": "bn-IN",
+                "en": "en-GB"
+            }
+            src = lang_map.get("en", "en-GB")
+            tgt = lang_map.get(target_lang, target_lang)
+            
+            mm = MyMemoryTranslator(source=src, target=tgt)
             out = mm.translate(text)
             if out:
                 return out
@@ -287,48 +289,7 @@ def _rate_limit_check(ip: str):
         return True
 
 # -----------------------------------------------------------
-# ✅ ROUTES
-# -----------------------------------------------------------
-@app.route("/chat", methods=["POST"])
-def chat():
-    start = time.time()
-    data = request.get_json(silent=True) or {}
-    message = (data.get("message") or "").strip()
-    lang = (data.get("lang") or "en").lower()
-    ip = request.remote_addr or "unknown"
-
-    if not message:
-        return jsonify({"error": "Message required"}), 400
-    if not _rate_limit_check(ip):
-        return jsonify({"error": "Rate limited"}), 429
-
-    try:
-        rag_answer = rag_search(message, lang)
-        if rag_answer:
-            translated = translate_text(rag_answer, lang, preload=False)
-            return jsonify({
-                "reply": translated,
-                "source": "RAG",
-                "lang": lang,
-                "time": round(time.time() - start, 3),
-            })
-
-        agent = load_agent_sync(lang)
-        responses = loop.run_until_complete(agent.handle_text(message))
-        reply = " ".join(r.get("text", "") for r in responses if r.get("text"))
-        translated = translate_text(reply, lang, preload=False)
-        return jsonify({
-            "reply": translated,
-            "source": "RASA",
-            "lang": lang,
-            "time": round(time.time() - start, 3),
-        })
-    except Exception as e:
-        log.exception("Chat error")
-        return jsonify({"error": str(e)}), 500
-
-# -----------------------------------------------------------
-# ✅ PRELOAD THREADS (MyMemory only)
+# ✅ FASTAPI SETUP
 # -----------------------------------------------------------
 def preload_workload():
     log.info("🚀 Preloading models and cached translations...")
@@ -346,22 +307,78 @@ def preload_workload():
             _bg_executor.submit(translate_text, ans, tgt, True)
     log.info("✅ Preload completed.")
 
-# -----------------------------------------------------------
-# ✅ GRACEFUL SHUTDOWN
-# -----------------------------------------------------------
-def _shutdown_handler(signum, frame):
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
+    log.info("🔥 Chatbot server starting...")
+    threading.Thread(target=preload_workload, daemon=True).start()
+    yield
+    # Shutdown
     log.info("🛑 Shutdown signal received.")
     _bg_executor.shutdown(wait=False)
     log.info("✅ Clean shutdown complete.")
 
-signal.signal(signal.SIGINT, _shutdown_handler)
-signal.signal(signal.SIGTERM, _shutdown_handler)
 
-# -----------------------------------------------------------
-# ✅ START SERVER
-# -----------------------------------------------------------
-threading.Thread(target=preload_workload, daemon=True).start()
+app = FastAPI(lifespan=lifespan)
 
-if __name__== "__main__":
-    log.info("🔥 Chatbot server running on port 5000...")
-    app.run(host="0.0.0.0", port=5000, debug=False, threaded=True)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+class ChatRequest(BaseModel):
+    message: str
+    lang: str = "en"
+
+@app.post("/chat")
+async def chat(request: ChatRequest, raw_request: Request):
+    start = time.time()
+    message = request.message.strip()
+    lang = request.lang.lower()
+    ip = raw_request.client.host if raw_request.client else "unknown"
+
+    if not message:
+        raise HTTPException(status_code=400, detail="Message required")
+    if not _rate_limit_check(ip):
+        raise HTTPException(status_code=429, detail="Rate limited")
+
+    try:
+        # 1. RAG Search
+        rag_answer = rag_search(message, lang)
+        if rag_answer:
+            translated = translate_text(rag_answer, lang, preload=False)
+            return {
+                "reply": translated,
+                "source": "RAG",
+                "lang": lang,
+                "time": round(time.time() - start, 3),
+            }
+
+        # 2. Rasa Fallback
+        agent = load_agent_sync(lang)
+        # FastAPI supports async natively, so we await directly
+        responses = await agent.handle_text(message)
+        reply = " ".join(r.get("text", "") for r in responses if r.get("text"))
+        
+        if not reply:
+             reply = "I'm sorry, I didn't understand that."
+
+        translated = translate_text(reply, lang, preload=False)
+        return {
+            "reply": translated,
+            "source": "RASA",
+            "lang": lang,
+            "time": round(time.time() - start, 3),
+        }
+
+    except Exception as e:
+        log.exception("Chat error")
+        raise HTTPException(status_code=500, detail=str(e))
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=5000)
