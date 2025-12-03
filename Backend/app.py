@@ -1,3 +1,14 @@
+import os
+
+# 🚀 FIX: Disable OneDNN and GPU to prevent startup hangs
+os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+import time
+import re
+import logging
+import signal
+import threading
 from functools import lru_cache
 from concurrent.futures import ThreadPoolExecutor
 from collections import defaultdict, deque
