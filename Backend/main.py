@@ -238,10 +238,18 @@ def rag_search(user_message: str, lang: str) -> Optional[str]:
 def _translate_cached(text: str, target_lang: str, preload: bool = False) -> str:
     if not text or target_lang == "en":
         return text
-    if re.search(r"https?://|www\.|[\w\.-]+@[\w\.-]+", text):
-        return text
+    # 🔹 URL/Email Protection: Mask them before translation
+    url_pattern = r"(https?://\S+|www\.\S+|[\w\.-]+@[\w\.-]+)"
+    urls = []
+    
+    def mask_match(match):
+        urls.append(match.group(0))
+        return f"__URL_{len(urls)-1}__"
+
+    masked_text = re.sub(url_pattern, mask_match, text)
 
     try:
+        out = None
         if preload:
             # MyMemory requires specific language pairs (e.g., en-IN|hi-IN)
             # We map generic codes to specific ones for better support
@@ -255,14 +263,20 @@ def _translate_cached(text: str, target_lang: str, preload: bool = False) -> str
             tgt = lang_map.get(target_lang, target_lang)
             
             mm = MyMemoryTranslator(source=src, target=tgt)
-            out = mm.translate(text)
-            if out:
-                return out
+            out = mm.translate(masked_text)
         else:
             g = GoogleTranslator(source="auto", target=target_lang)
-            out = g.translate(text)
-            if out:
-                return out
+            out = g.translate(masked_text)
+            
+        if out:
+            # Restore URLs
+            for i, url in enumerate(urls):
+                # Handle potential translator formatting quirks (spaces, etc.)
+                out = out.replace(f"__URL_{i}__", url)
+                out = out.replace(f"__ URL_{i} __", url) # Common Google Translate artifact
+                out = out.replace(f"__URL_ {i}__", url)
+            return out
+            
     except Exception as e:
         log.warning(f"⚠ Translator failed ({'preload' if preload else 'runtime'}) for {target_lang}: {e}")
     return text

@@ -26,6 +26,8 @@ export default function App() {
     setInput("");
     setLoading(true);
 
+    console.log("Sending message:", input, "Language:", language);
+
     try {
       const response = await fetch("http://127.0.0.1:5000/chat", {
         method: "POST",
@@ -43,6 +45,7 @@ export default function App() {
           const text = await response.text();
           data = { reply: text };
         }
+        console.log("Received response data:", data);
       } else {
         // Non-2xx response: read text to show meaningful message
         const text = await response.text();
